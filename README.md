@@ -22,17 +22,27 @@ sharing the splits).
 We will use the following example to explain the fields:
 
 ### The tokenized version of the word problem
-sQuestion: In a chemistry class , 5 liters of 4 % silver solution must be mixed with a 10 % solution 
-to get a 6 % solution . How many liters of the 10 % solution are needed ?, 
+`"sQuestion": "In a chemistry class , 5 liters of 4 % silver solution must be mixed with a 10 % solution 
+to get a 6 % solution . How many liters of the 10 % solution are needed ?"`
 ### The equation system
-lEquations: [".01*4*(5)+.01*10*x=.01*6*(5+x)"]
+```
+"lEquations": [".01*4*(5)+.01*10*x=.01*6*(5+x)"]
+```
 ### The solution
-lSolutions: [2.5]
+```
+"lSolutions": [2.5]
+```
 ### The template; a, b, ... represents the coefficients while m,n, ... represents the variables
-Template: [ "a * m - b * m = b * c - c * d"]
-# Problem id
-iIndex: 300319 
+```
+"Template": [ "a * m - b * m = b * c - c * d"]
+```
+### Problem id
+```
+"iIndex": 300319 
+```
 ### The alignments between the coefficients and textual numbers
+The alignments sometimes are not unique; this shows that the textual number on the 17-th token of the 0-th 
+sentence is the same as the 5-th token of the 1-st sentence. Their values are both 10s. "Equiv": [[[0, 17, 10], [1, 5, 10]]]
 ```
 "Alignment": [
    {
@@ -61,13 +71,4 @@ iIndex: 300319
    }
   ], 
 ```
-Tthe alignments sometimes are not unique; this shows that the textual number on the 17-th token of the 0-th 
-setnence is the same as the 5-th token of the 1-st sentence. Their values are both 10s. "Equiv": [[[0, 17, 10], [1, 5, 10]]]
-
-If you found the dataset useful, please support our work by citing our paper. Please email the authors 
-if you find any problems.
-
-p.s. When conducting the experiments on Dolphin-L, note that the training data contains all of the 
-examples which are not in the test split. There are some examples belong to the development set, and 
-they do not belong to any test split in any fold.
 
