@@ -2,6 +2,7 @@ import json
 from pprint import pprint
 import networkx as nx
 import matplotlib.pyplot as plot
+
 '''
 	This file will parse the questions json file and build a knowledge graph
 	20 October 2016
@@ -32,7 +33,8 @@ def dumpToken(token, pretty=True):
 	return
 
 class tokenNode():
-	def __init__(self, lemma, pos):
+	def __init__(self, index, lemma, pos):
+		self.index = index
 		self.lemma = lemma
 		self.pos = pos
 
@@ -44,17 +46,39 @@ def generateTokenGraph(tokens):
 
 	G = nx.Graph()
 
+	index = 0
+	edges = []
+	nodes = []
+
 	for token in tokens:
 
 		pos = token['partOfSpeech']['tag']
 
 		# Grab the Dependency Graph Edge
-		#dependencyEdge =  token['dependencyEdge']
+		dependencyEdge =  token['dependencyEdge']
+		headIndex = dependencyEdge['headTokenIndex']
+		edgeLabel = dependencyEdge['label']
+
+		# Keep track of the edge and increment index
+		edges.append((index, headIndex, edgeLabel))
 
 		lemma =  token['lemma']
 
-		tn = tokenNode(lemma, pos)
+		# Node representing each token
+		tn = tokenNode(index, lemma, pos)
+		nodes.append(tn)
+
+		# Keep track of edges and add at the end
+		# We do this because we might not have a
+		# node to link to yet
 		G.add_node(tn)
+
+		# Increment node index
+		index += 1
+
+	# Go through each edge and add edges and edge attribute
+	for edge in edges:
+		G.add_edge(nodes[edge[0]], nodes[edge[1]])
 
 	return G
 
@@ -77,14 +101,15 @@ if __name__ == "__main__":
 		# Tokenize
 		tokens = tokenize(nlp)
 
+		#for token in tokens:
+		#	print token
+
 		#print dumpToken(tokens)
 
 		# Let's make a graph!
 		tokenGraph = generateTokenGraph(tokens)
 		nx.draw(tokenGraph)
 		plot.draw()
-
-		exit(0)
 
 		# Grab the rest of the problem
 		question = problem['sQuestion']
