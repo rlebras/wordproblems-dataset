@@ -4,9 +4,10 @@ import networkx as nx
 import matplotlib.pyplot as plot
 
 '''
-	This file will parse the questions json file and build a knowledge graph
+	This file will parse the questions json file and build
+	a series of knowledge triples around each verb
+	Marbles.ai
 	20 October 2016
-	tommy.tracy@gmail.com
 '''
 
 # Example filename containing the questions, NLP and answers
@@ -21,10 +22,9 @@ def readjson(filename):
 # Take an NLP and return the tokens (in some format)
 def tokenize(nlp):
 	tokens = nlp['tokens']
-	#for token in tokens:
-	#	dumpToken(token, False)
 	return tokens
 
+# Dump the tokens to the std::out
 def dumpToken(token, pretty=True):
 	if pretty:
 		print json.dumps(token, sort_keys=True, indent=2)
@@ -32,57 +32,59 @@ def dumpToken(token, pretty=True):
 		print json.dumps(token, sort_keys=True)
 	return
 
+# tokenNode object
 class tokenNode():
-	def __init__(self, index, lemma, pos):
+	def __init__(self, index, content, lemma, pos):
 		self.index = index
+		self.content = content
 		self.lemma = lemma
 		self.pos = pos
 
-	# Still need to implement this
-    #def __str__(self):
-    #    return self.name
-
+# Generate the toke graph
 def generateTokenGraph(tokens):
 
 	G = nx.Graph()
 
-	index = 0
-	edges = []
+	currentIndex = 0
 	nodes = []
 
 	for token in tokens:
 
+		# Grab content, offset, part of speech, lemma
+		content = token['text']['content']
+		offset = token['text']['beginOffset']
 		pos = token['partOfSpeech']['tag']
+		lemma =  token['lemma']
 
 		# Grab the Dependency Graph Edge
 		dependencyEdge =  token['dependencyEdge']
 		headIndex = dependencyEdge['headTokenIndex']
 		edgeLabel = dependencyEdge['label']
 
-		# Keep track of the edge and increment index
-		edges.append((index, headIndex, edgeLabel))
-
-		lemma =  token['lemma']
+		# Add the edge to the graph; if nodes aren't
+		# already in the graph, they're added (neat)
+		G.add_edge(currentIndex, headIndex, label=edgeLabel)
 
 		# Node representing each token
-		tn = tokenNode(index, lemma, pos)
-		nodes.append(tn)
-
-		# Keep track of edges and add at the end
-		# We do this because we might not have a
-		# node to link to yet
-		G.add_node(tn)
+		nodes.append(tokenNode(currentIndex, content, lemma, pos))
 
 		# Increment node index
-		index += 1
+		currentIndex += 1
 
 	# Go through each edge and add edges and edge attribute
-	for edge in edges:
-		G.add_edge(nodes[edge[0]], nodes[edge[1]])
+	for node in nodes:
+		if node.pos == 'VERB':
+			print(node.content+" is a VERB")
+			print("Edges associated with this token")
+
+			for edge in G.edges(node.index, data='label'):
+				partner = nodes[edge[1]]
+				print "Partner: "+ partner.content+ "("+partner.pos+")"
+	exit()
 
 	return G
 
-
+# Dump the NLP
 def dumpNLP(nlp):
 	print json.dumps(nlp, sort_keys=True, indent=2)
 	return
@@ -101,17 +103,12 @@ if __name__ == "__main__":
 		# Tokenize
 		tokens = tokenize(nlp)
 
-		#for token in tokens:
-		#	print token
-
-		#print dumpToken(tokens)
-
 		# Let's make a graph!
 		tokenGraph = generateTokenGraph(tokens)
-		nx.draw(tokenGraph)
-		plot.draw()
 
 		# Grab the rest of the problem
 		question = problem['sQuestion']
 		solutions = problem['lSolutions']
 		equations = problem['lEquations']
+
+		exit()
