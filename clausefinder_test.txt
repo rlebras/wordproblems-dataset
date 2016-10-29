@@ -1,0 +1,47 @@
+# S1: SV (Albert Einstein, died)
+Albert Einstein died.
+
+# S2: SVeA SVA (Albert Einstein, remained, in Princeton)
+Albert Einstein remained in Princeton.
+
+# S3: SVcC SVC (Albert Einstein, is, smart)
+Albert Einstein is smart.
+
+# S4: SVmtO SVO (Albert Einstein, has won, the Nobel Prize)
+Albert Einstein has won the Nobel Prize.
+
+# S5: SVdtOiO SVOO  (RSAS, gave, Albert Einstein, the Nobel Prize)
+RSAS gave Albert Einstein the Nobel Prize.
+
+# S6: SVctOA SVOA (The doorman, showed, Albert Einstein, to his office)
+The doorman showed Albert Einstein to his office.
+
+# S7: SVctOC SVOC (Albert Einstein, declared, the meeting, open)
+Albert Einstein declared the meeting open.
+
+# Some extended patterns
+# S8: SViAA SV . (Albert Einstein, died)
+#     (Albert Einstein, died, in Princeton)
+#     (Albert Einstein, died, in 1955)
+#     (Albert Einstein, died, in Princeton, in 1955)
+Albert Einstein died in Princeton in 1955.
+
+# S9: SVeAA SVA  (Albert Einstein, remained, in Princeton)
+#     (Albert Einstein, remained, in Princeton, until his death)
+Albert Einstein remained in Princeton until his death.
+
+# S10: SVcCA SVC (Albert Einstein, is, a scientist)
+#      (Albert Einstein, is, a scientist, of the 20th century)
+Albert Einstein is a scientist of the 20th century.
+# S11: SVmtOA SVO (Albert Einstein, has won, the Nobel Prize)
+#      (Albert Einstein, has won, the Nobel Prize, in 1921)
+Albert Einstein has won the Nobel Prize in 1921.
+
+# S12: ASVmtO SVO (Albert Einstein, has won, the Nobel Prize)
+#      (Albert Einstein, has won, the Nobel Prize, in 1921)
+In 1921, Albert Einstein has won the Nobel Prize.
+
+# S13: (S: Bell, V: makes, O: products)
+#      (S: Bell, V: based, A!: Angeles)
+#      (S: Bell, V: “is”, A!: company)
+Bell , a telecommunication company , which is based in Los Angeles , makes and distributes electronic , computer and building products.

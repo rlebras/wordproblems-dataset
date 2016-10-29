@@ -1,0 +1,1931 @@
+{
+  "tokens": [
+    {
+      "text": {
+        "content": "Albert", 
+        "beginOffset": 0
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 1, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Albert"
+    }, 
+    {
+      "text": {
+        "content": "Einstein", 
+        "beginOffset": 7
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 2, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Einstein"
+    }, 
+    {
+      "text": {
+        "content": "died", 
+        "beginOffset": 16
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 2, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "die"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 20
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 2, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "Albert", 
+        "beginOffset": 22
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 5, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Albert"
+    }, 
+    {
+      "text": {
+        "content": "Einstein", 
+        "beginOffset": 29
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 6, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Einstein"
+    }, 
+    {
+      "text": {
+        "content": "remained", 
+        "beginOffset": 38
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 6, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "remain"
+    }, 
+    {
+      "text": {
+        "content": "in", 
+        "beginOffset": 47
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 6, 
+        "label": "PREP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADP"
+      }, 
+      "lemma": "in"
+    }, 
+    {
+      "text": {
+        "content": "Princeton", 
+        "beginOffset": 50
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 7, 
+        "label": "POBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Princeton"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 59
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 6, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "Albert", 
+        "beginOffset": 61
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 11, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Albert"
+    }, 
+    {
+      "text": {
+        "content": "Einstein", 
+        "beginOffset": 68
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 12, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Einstein"
+    }, 
+    {
+      "text": {
+        "content": "is", 
+        "beginOffset": 77
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 12, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "be"
+    }, 
+    {
+      "text": {
+        "content": "smart", 
+        "beginOffset": 80
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 12, 
+        "label": "ACOMP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADJ"
+      }, 
+      "lemma": "smart"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 85
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 12, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "Albert", 
+        "beginOffset": 87
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 16, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Albert"
+    }, 
+    {
+      "text": {
+        "content": "Einstein", 
+        "beginOffset": 94
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 18, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Einstein"
+    }, 
+    {
+      "text": {
+        "content": "has", 
+        "beginOffset": 103
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 18, 
+        "label": "AUX"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "have"
+    }, 
+    {
+      "text": {
+        "content": "won", 
+        "beginOffset": 107
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 18, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "win"
+    }, 
+    {
+      "text": {
+        "content": "the", 
+        "beginOffset": 111
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 21, 
+        "label": "DET"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "the"
+    }, 
+    {
+      "text": {
+        "content": "Nobel", 
+        "beginOffset": 115
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 21, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Nobel"
+    }, 
+    {
+      "text": {
+        "content": "Prize", 
+        "beginOffset": 121
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 18, 
+        "label": "DOBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Prize"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 126
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 18, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "RSAS", 
+        "beginOffset": 128
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 24, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "RSAS"
+    }, 
+    {
+      "text": {
+        "content": "gave", 
+        "beginOffset": 133
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 24, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "give"
+    }, 
+    {
+      "text": {
+        "content": "Albert", 
+        "beginOffset": 138
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 26, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Albert"
+    }, 
+    {
+      "text": {
+        "content": "Einstein", 
+        "beginOffset": 145
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 24, 
+        "label": "IOBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Einstein"
+    }, 
+    {
+      "text": {
+        "content": "the", 
+        "beginOffset": 154
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 29, 
+        "label": "DET"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "the"
+    }, 
+    {
+      "text": {
+        "content": "Nobel", 
+        "beginOffset": 158
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 29, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Nobel"
+    }, 
+    {
+      "text": {
+        "content": "Prize", 
+        "beginOffset": 164
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 24, 
+        "label": "DOBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Prize"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 169
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 24, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "The", 
+        "beginOffset": 171
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 32, 
+        "label": "DET"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "The"
+    }, 
+    {
+      "text": {
+        "content": "doorman", 
+        "beginOffset": 175
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 33, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "doorman"
+    }, 
+    {
+      "text": {
+        "content": "showed", 
+        "beginOffset": 183
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 33, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "show"
+    }, 
+    {
+      "text": {
+        "content": "Albert", 
+        "beginOffset": 190
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 35, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Albert"
+    }, 
+    {
+      "text": {
+        "content": "Einstein", 
+        "beginOffset": 197
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 33, 
+        "label": "DOBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Einstein"
+    }, 
+    {
+      "text": {
+        "content": "to", 
+        "beginOffset": 206
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 33, 
+        "label": "PREP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADP"
+      }, 
+      "lemma": "to"
+    }, 
+    {
+      "text": {
+        "content": "his", 
+        "beginOffset": 209
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 38, 
+        "label": "POSS"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRON"
+      }, 
+      "lemma": "his"
+    }, 
+    {
+      "text": {
+        "content": "office", 
+        "beginOffset": 213
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 36, 
+        "label": "POBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "office"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 219
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 33, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "Albert", 
+        "beginOffset": 221
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 41, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Albert"
+    }, 
+    {
+      "text": {
+        "content": "Einstein", 
+        "beginOffset": 228
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 42, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Einstein"
+    }, 
+    {
+      "text": {
+        "content": "declared", 
+        "beginOffset": 237
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 42, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "declare"
+    }, 
+    {
+      "text": {
+        "content": "the", 
+        "beginOffset": 246
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 44, 
+        "label": "DET"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "the"
+    }, 
+    {
+      "text": {
+        "content": "meeting", 
+        "beginOffset": 250
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 45, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "meeting"
+    }, 
+    {
+      "text": {
+        "content": "open", 
+        "beginOffset": 258
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 42, 
+        "label": "ACOMP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADJ"
+      }, 
+      "lemma": "open"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 262
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 42, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "Albert", 
+        "beginOffset": 264
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 48, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Albert"
+    }, 
+    {
+      "text": {
+        "content": "Einstein", 
+        "beginOffset": 271
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 49, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Einstein"
+    }, 
+    {
+      "text": {
+        "content": "died", 
+        "beginOffset": 280
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 49, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "die"
+    }, 
+    {
+      "text": {
+        "content": "in", 
+        "beginOffset": 285
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 49, 
+        "label": "PREP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADP"
+      }, 
+      "lemma": "in"
+    }, 
+    {
+      "text": {
+        "content": "Princeton", 
+        "beginOffset": 288
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 50, 
+        "label": "POBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Princeton"
+    }, 
+    {
+      "text": {
+        "content": "in", 
+        "beginOffset": 298
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 49, 
+        "label": "PREP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADP"
+      }, 
+      "lemma": "in"
+    }, 
+    {
+      "text": {
+        "content": "1955", 
+        "beginOffset": 301
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 52, 
+        "label": "POBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NUM"
+      }, 
+      "lemma": "1955"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 305
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 49, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "Albert", 
+        "beginOffset": 307
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 56, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Albert"
+    }, 
+    {
+      "text": {
+        "content": "Einstein", 
+        "beginOffset": 314
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 57, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Einstein"
+    }, 
+    {
+      "text": {
+        "content": "remained", 
+        "beginOffset": 323
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 57, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "remain"
+    }, 
+    {
+      "text": {
+        "content": "in", 
+        "beginOffset": 332
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 57, 
+        "label": "PREP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADP"
+      }, 
+      "lemma": "in"
+    }, 
+    {
+      "text": {
+        "content": "Princeton", 
+        "beginOffset": 335
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 58, 
+        "label": "POBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Princeton"
+    }, 
+    {
+      "text": {
+        "content": "until", 
+        "beginOffset": 345
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 57, 
+        "label": "PREP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADP"
+      }, 
+      "lemma": "until"
+    }, 
+    {
+      "text": {
+        "content": "his", 
+        "beginOffset": 351
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 62, 
+        "label": "POSS"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRON"
+      }, 
+      "lemma": "his"
+    }, 
+    {
+      "text": {
+        "content": "death", 
+        "beginOffset": 355
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 60, 
+        "label": "POBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "death"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 360
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 57, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "Albert", 
+        "beginOffset": 362
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 65, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Albert"
+    }, 
+    {
+      "text": {
+        "content": "Einstein", 
+        "beginOffset": 369
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 66, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Einstein"
+    }, 
+    {
+      "text": {
+        "content": "is", 
+        "beginOffset": 378
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 66, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "be"
+    }, 
+    {
+      "text": {
+        "content": "a", 
+        "beginOffset": 381
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 68, 
+        "label": "DET"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "a"
+    }, 
+    {
+      "text": {
+        "content": "scientist", 
+        "beginOffset": 383
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 66, 
+        "label": "ATTR"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "scientist"
+    }, 
+    {
+      "text": {
+        "content": "of", 
+        "beginOffset": 393
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 68, 
+        "label": "PREP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADP"
+      }, 
+      "lemma": "of"
+    }, 
+    {
+      "text": {
+        "content": "the", 
+        "beginOffset": 396
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 72, 
+        "label": "DET"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "the"
+    }, 
+    {
+      "text": {
+        "content": "20th", 
+        "beginOffset": 400
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 72, 
+        "label": "AMOD"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADJ"
+      }, 
+      "lemma": "20th"
+    }, 
+    {
+      "text": {
+        "content": "century", 
+        "beginOffset": 405
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 69, 
+        "label": "POBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "century"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 412
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 66, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "Albert", 
+        "beginOffset": 414
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 75, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Albert"
+    }, 
+    {
+      "text": {
+        "content": "Einstein", 
+        "beginOffset": 421
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 77, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Einstein"
+    }, 
+    {
+      "text": {
+        "content": "has", 
+        "beginOffset": 430
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 77, 
+        "label": "AUX"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "have"
+    }, 
+    {
+      "text": {
+        "content": "won", 
+        "beginOffset": 434
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 77, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "win"
+    }, 
+    {
+      "text": {
+        "content": "the", 
+        "beginOffset": 438
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 80, 
+        "label": "DET"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "the"
+    }, 
+    {
+      "text": {
+        "content": "Nobel", 
+        "beginOffset": 442
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 80, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Nobel"
+    }, 
+    {
+      "text": {
+        "content": "Prize", 
+        "beginOffset": 448
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 77, 
+        "label": "DOBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Prize"
+    }, 
+    {
+      "text": {
+        "content": "in", 
+        "beginOffset": 454
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 77, 
+        "label": "PREP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADP"
+      }, 
+      "lemma": "in"
+    }, 
+    {
+      "text": {
+        "content": "1921", 
+        "beginOffset": 457
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 81, 
+        "label": "POBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NUM"
+      }, 
+      "lemma": "1921"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 461
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 77, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "In", 
+        "beginOffset": 463
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 90, 
+        "label": "PREP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADP"
+      }, 
+      "lemma": "In"
+    }, 
+    {
+      "text": {
+        "content": "1921", 
+        "beginOffset": 466
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 84, 
+        "label": "POBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NUM"
+      }, 
+      "lemma": "1921"
+    }, 
+    {
+      "text": {
+        "content": ",", 
+        "beginOffset": 470
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 90, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": ","
+    }, 
+    {
+      "text": {
+        "content": "Albert", 
+        "beginOffset": 472
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 88, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Albert"
+    }, 
+    {
+      "text": {
+        "content": "Einstein", 
+        "beginOffset": 479
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 90, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Einstein"
+    }, 
+    {
+      "text": {
+        "content": "has", 
+        "beginOffset": 488
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 90, 
+        "label": "AUX"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "have"
+    }, 
+    {
+      "text": {
+        "content": "won", 
+        "beginOffset": 492
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 90, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "win"
+    }, 
+    {
+      "text": {
+        "content": "the", 
+        "beginOffset": 496
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 93, 
+        "label": "DET"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "the"
+    }, 
+    {
+      "text": {
+        "content": "Nobel", 
+        "beginOffset": 500
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 93, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Nobel"
+    }, 
+    {
+      "text": {
+        "content": "Prize", 
+        "beginOffset": 506
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 90, 
+        "label": "DOBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Prize"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 511
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 90, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "Bell", 
+        "beginOffset": 513
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 108, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Bell"
+    }, 
+    {
+      "text": {
+        "content": ",", 
+        "beginOffset": 518
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 95, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": ","
+    }, 
+    {
+      "text": {
+        "content": "a", 
+        "beginOffset": 520
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 99, 
+        "label": "DET"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "a"
+    }, 
+    {
+      "text": {
+        "content": "telecommunication", 
+        "beginOffset": 522
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 99, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "telecommunication"
+    }, 
+    {
+      "text": {
+        "content": "company", 
+        "beginOffset": 540
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 95, 
+        "label": "APPOS"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "company"
+    }, 
+    {
+      "text": {
+        "content": ",", 
+        "beginOffset": 548
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 99, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": ","
+    }, 
+    {
+      "text": {
+        "content": "which", 
+        "beginOffset": 550
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 103, 
+        "label": "NSUBJPASS"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "which"
+    }, 
+    {
+      "text": {
+        "content": "is", 
+        "beginOffset": 556
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 103, 
+        "label": "AUXPASS"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "be"
+    }, 
+    {
+      "text": {
+        "content": "based", 
+        "beginOffset": 559
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 99, 
+        "label": "RCMOD"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "base"
+    }, 
+    {
+      "text": {
+        "content": "in", 
+        "beginOffset": 565
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 103, 
+        "label": "PREP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADP"
+      }, 
+      "lemma": "in"
+    }, 
+    {
+      "text": {
+        "content": "Los", 
+        "beginOffset": 568
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 106, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Los"
+    }, 
+    {
+      "text": {
+        "content": "Angeles", 
+        "beginOffset": 572
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 104, 
+        "label": "POBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Angeles"
+    }, 
+    {
+      "text": {
+        "content": ",", 
+        "beginOffset": 580
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 95, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": ","
+    }, 
+    {
+      "text": {
+        "content": "makes", 
+        "beginOffset": 582
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 108, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "make"
+    }, 
+    {
+      "text": {
+        "content": "and", 
+        "beginOffset": 588
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 108, 
+        "label": "CC"
+      }, 
+      "partOfSpeech": {
+        "tag": "CONJ"
+      }, 
+      "lemma": "and"
+    }, 
+    {
+      "text": {
+        "content": "distributes", 
+        "beginOffset": 592
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 108, 
+        "label": "CONJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "distribute"
+    }, 
+    {
+      "text": {
+        "content": "electronic", 
+        "beginOffset": 604
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 116, 
+        "label": "AMOD"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADJ"
+      }, 
+      "lemma": "electronic"
+    }, 
+    {
+      "text": {
+        "content": ",", 
+        "beginOffset": 615
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 111, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": ","
+    }, 
+    {
+      "text": {
+        "content": "computer", 
+        "beginOffset": 617
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 111, 
+        "label": "CONJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "computer"
+    }, 
+    {
+      "text": {
+        "content": "and", 
+        "beginOffset": 626
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 111, 
+        "label": "CC"
+      }, 
+      "partOfSpeech": {
+        "tag": "CONJ"
+      }, 
+      "lemma": "and"
+    }, 
+    {
+      "text": {
+        "content": "building", 
+        "beginOffset": 630
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 111, 
+        "label": "CONJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "building"
+    }, 
+    {
+      "text": {
+        "content": "products", 
+        "beginOffset": 639
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 110, 
+        "label": "DOBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "product"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 647
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 108, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }
+  ], 
+  "entities": [
+    {
+      "salience": 0.77508372, 
+      "mentions": [
+        {
+          "text": {
+            "content": "Albert Einstein", 
+            "beginOffset": 0
+          }
+        }, 
+        {
+          "text": {
+            "content": "Albert Einstein", 
+            "beginOffset": 22
+          }
+        }, 
+        {
+          "text": {
+            "content": "Albert Einstein", 
+            "beginOffset": 61
+          }
+        }, 
+        {
+          "text": {
+            "content": "Albert Einstein", 
+            "beginOffset": 87
+          }
+        }, 
+        {
+          "text": {
+            "content": "Albert Einstein", 
+            "beginOffset": 138
+          }
+        }, 
+        {
+          "text": {
+            "content": "Albert Einstein", 
+            "beginOffset": 190
+          }
+        }, 
+        {
+          "text": {
+            "content": "Albert Einstein", 
+            "beginOffset": 221
+          }
+        }, 
+        {
+          "text": {
+            "content": "Albert Einstein", 
+            "beginOffset": 264
+          }
+        }, 
+        {
+          "text": {
+            "content": "Albert Einstein", 
+            "beginOffset": 307
+          }
+        }, 
+        {
+          "text": {
+            "content": "Albert Einstein", 
+            "beginOffset": 362
+          }
+        }, 
+        {
+          "text": {
+            "content": "Albert Einstein", 
+            "beginOffset": 414
+          }
+        }, 
+        {
+          "text": {
+            "content": "Albert Einstein", 
+            "beginOffset": 472
+          }
+        }
+      ], 
+      "type": "PERSON", 
+      "name": "Albert Einstein", 
+      "metadata": {
+        "wikipedia_url": "http://en.wikipedia.org/wiki/Albert_Einstein"
+      }
+    }, 
+    {
+      "salience": 0.10331659, 
+      "mentions": [
+        {
+          "text": {
+            "content": "Nobel Prize", 
+            "beginOffset": 115
+          }
+        }, 
+        {
+          "text": {
+            "content": "Nobel Prize", 
+            "beginOffset": 158
+          }
+        }, 
+        {
+          "text": {
+            "content": "Nobel Prize", 
+            "beginOffset": 442
+          }
+        }, 
+        {
+          "text": {
+            "content": "Nobel Prize", 
+            "beginOffset": 500
+          }
+        }
+      ], 
+      "type": "OTHER", 
+      "name": "Nobel Prize", 
+      "metadata": {
+        "wikipedia_url": "http://en.wikipedia.org/wiki/Nobel_Prize"
+      }
+    }, 
+    {
+      "salience": 0.027842142, 
+      "mentions": [
+        {
+          "text": {
+            "content": "Princeton", 
+            "beginOffset": 50
+          }
+        }, 
+        {
+          "text": {
+            "content": "Princeton", 
+            "beginOffset": 288
+          }
+        }, 
+        {
+          "text": {
+            "content": "Princeton", 
+            "beginOffset": 335
+          }
+        }
+      ], 
+      "type": "LOCATION", 
+      "name": "Princeton", 
+      "metadata": {
+        "wikipedia_url": "http://en.wikipedia.org/wiki/Princeton,_New_Jersey"
+      }
+    }, 
+    {
+      "salience": 0.010843387, 
+      "mentions": [
+        {
+          "text": {
+            "content": "RSAS", 
+            "beginOffset": 128
+          }
+        }
+      ], 
+      "type": "ORGANIZATION", 
+      "name": "RSAS", 
+      "metadata": {
+        "wikipedia_url": "http://en.wikipedia.org/wiki/Royal_Swedish_Academy_of_Sciences"
+      }
+    }, 
+    {
+      "salience": 0.0040725726, 
+      "mentions": [
+        {
+          "text": {
+            "content": "Bell", 
+            "beginOffset": 513
+          }
+        }
+      ], 
+      "type": "PERSON", 
+      "name": "Bell", 
+      "metadata": {
+        "wikipedia_url": "http://en.wikipedia.org/wiki/Bell_Canada"
+      }
+    }, 
+    {
+      "salience": 0.0034582908, 
+      "mentions": [
+        {
+          "text": {
+            "content": "Los Angeles", 
+            "beginOffset": 568
+          }
+        }
+      ], 
+      "type": "LOCATION", 
+      "name": "Los Angeles", 
+      "metadata": {
+        "wikipedia_url": "http://en.wikipedia.org/wiki/Los_Angeles"
+      }
+    }
+  ], 
+  "language": "en", 
+  "sentences": [
+    {
+      "text": {
+        "content": "Albert Einstein died.", 
+        "beginOffset": 0
+      }
+    }, 
+    {
+      "text": {
+        "content": "Albert Einstein remained in Princeton.", 
+        "beginOffset": 22
+      }
+    }, 
+    {
+      "text": {
+        "content": "Albert Einstein is smart.", 
+        "beginOffset": 61
+      }
+    }, 
+    {
+      "text": {
+        "content": "Albert Einstein has won the Nobel Prize.", 
+        "beginOffset": 87
+      }
+    }, 
+    {
+      "text": {
+        "content": "RSAS gave Albert Einstein the Nobel Prize.", 
+        "beginOffset": 128
+      }
+    }, 
+    {
+      "text": {
+        "content": "The doorman showed Albert Einstein to his office.", 
+        "beginOffset": 171
+      }
+    }, 
+    {
+      "text": {
+        "content": "Albert Einstein declared the meeting open.", 
+        "beginOffset": 221
+      }
+    }, 
+    {
+      "text": {
+        "content": "Albert Einstein died in Princeton in 1955.", 
+        "beginOffset": 264
+      }
+    }, 
+    {
+      "text": {
+        "content": "Albert Einstein remained in Princeton until his death.", 
+        "beginOffset": 307
+      }
+    }, 
+    {
+      "text": {
+        "content": "Albert Einstein is a scientist of the 20th century.", 
+        "beginOffset": 362
+      }
+    }, 
+    {
+      "text": {
+        "content": "Albert Einstein has won the Nobel Prize in 1921.", 
+        "beginOffset": 414
+      }
+    }, 
+    {
+      "text": {
+        "content": "In 1921, Albert Einstein has won the Nobel Prize.", 
+        "beginOffset": 463
+      }
+    }, 
+    {
+      "text": {
+        "content": "Bell , a telecommunication company , which is based in Los Angeles , makes and distributes electronic , computer and building products.", 
+        "beginOffset": 513
+      }
+    }
+  ]
+}
