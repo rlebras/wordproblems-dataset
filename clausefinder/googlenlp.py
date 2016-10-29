@@ -9,14 +9,14 @@ from optparse import OptionParser
 POS = {
     'UNKNOWN':'',  # Unknown
     'ADJ':'',      # Adjective
-    'ADP':'A',	   # Adposition (preposition and postposition)
+    'ADP':'A',     # Adposition (preposition and postposition)
     'ADV':'',      # Adverb
     'CONJ':'',     # Conjunction
     'DET':'',      # Determiner
     'NOUN':'',     # Noun (common and proper)
-    'NUM':'',	   # Cardinal number
+    'NUM':'',      # Cardinal number
     'PRON':'',     # Pronoun
-    'PRT':'',	   # Particle or other function word
+    'PRT':'',      # Particle or other function word
     'PUNCT':'',    # Punctuation
     'VERB':'V',    # Verb (all tenses and modes)
     'X':'',        # Other: foreign words:{'type':'', 'model':''}, typos:{'type':'', 'model':''}, abbreviations
@@ -28,19 +28,19 @@ GRAMMATICAL_RELATIONS = {
     'ABBREV':'',       # Abbreviation modifier
     'ACOMP':'C',       # Adjectival complement
     'ADVCL':'',        # Adverbial clause modifier
-    'ADVMOD':'',	   # Adverbial modifier
+    'ADVMOD':'',       # Adverbial modifier
     'ADVPHMOD':'',     # Adverbial phrase modifier
     'AMOD':'',         # Adjectival modifier of an NP
     'APPOS':'',        # Appositional modifier of an NP
-    'ATTR':'',         # Attribute dependent of a copular verb
+    'ATTR':'c',        # Attribute dependent of a copular verb
     'AUX':'',          # Auxiliary (non-main) verb
-    'AUXPASS':'',	   # Passive auxiliary
+    'AUXPASS':'',      # Passive auxiliary
     'AUXCAUS':'',      # Causative auxiliary
     'AUXVV':'',        # Helper auxiliary
     'CC':'',           # Coordinating conjunction
-    'CCOMP':'C',       # Clausal complement of a verb or adjective
+    'CCOMP':'Cz',      # Clausal complement of a verb or adjective
     'CONJ':'',         # Conjunct
-    'COP':'c',         # Copula
+    'COP':'',          # Copula
     'CSUBJ':'S',       # Clausal subject
     'CSUBJPASS':'S',   # Clausal passive subject
     'DEP':'',          # Dependency (unable to determine)
@@ -56,8 +56,8 @@ GRAMMATICAL_RELATIONS = {
     'KW':'',           # Keyword
     'LIST':'',         # List for chains of comparable items
     'MARK':'',         # Marker (word introducing a subordinate clause)
-    'MWE':'',	       # Multi-word expression
-    'MWV':'',	       # Multi-word verbal expression
+    'MWE':'',          # Multi-word expression
+    'MWV':'',          # Multi-word verbal expression
     'NEG':'',          # Negation modifier
     'NN':'',           # Noun compound modifier
     'NOMC':'',         # Nominalized clause
@@ -95,12 +95,12 @@ GRAMMATICAL_RELATIONS = {
     'SNUM':'',         # Suffix specifying a unit of number
     'SUFF':'',         # Suffix
     'SUFFIX':'',       # Name suffix
-    'TITLE':'',	       # Name title
+    'TITLE':'',        # Name title
     'TMOD':'',         # Temporal modifier
     'TOPIC':'',        # Topic marker
     'VMOD':'',         # Clause headed by an infinite form of the verb that modifies a noun
     'VOCATIVE':'',     # Vocative
-    'XCOMP':'C',       # Open clausal complement
+    'XCOMP':'Cx',      # Open clausal complement
 }
 
 
@@ -327,9 +327,9 @@ class Clause(object):
                         if p.idx == o.idx:
                             continue
                         if p.isDescendent(o):
-                            o._indexes = filter(lambda x: x not in p._indexes, o._indexes)
+                            s._indexes = filter(lambda x: x not in t._indexes, s._indexes)
                         elif o.isDescendent(p):
-                            p._indexes = filter(lambda x: x not in o._indexes, p._indexes)
+                            t._indexes = filter(lambda x: x not in s._indexes, t._indexes)
             else:
                 if not isinstance(objects, Token):
                     raise TypeError
@@ -401,7 +401,7 @@ class ClauseFinder(object):
                         clauseMap[V.idx] = [ S ].extend(clauseMap[V.idx])
                 else:
                     clauseMap[V.idx] = [ S, V ]
-            elif token.dep in [ 'DOBJ', 'IOBJ', 'CCOMP', 'XCOMP', 'ACOMP' ] or token.pos in [ 'ADP' ]:
+            elif token.dep in [ 'DOBJ', 'IOBJ', 'CCOMP', 'XCOMP', 'ACOMP', 'ATTR' ] or token.pos in [ 'ADP' ]:
                 O = token
                 V = self.getGovenor(token)
                 if clauseMap[V.idx] is not None:
