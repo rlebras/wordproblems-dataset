@@ -33,6 +33,7 @@ Albert Einstein remained in Princeton until his death.
 # S10: SVcCA SVC (Albert Einstein, is, a scientist)
 #      (Albert Einstein, is, a scientist, of the 20th century)
 Albert Einstein is a scientist of the 20th century.
+
 # S11: SVmtOA SVO (Albert Einstein, has won, the Nobel Prize)
 #      (Albert Einstein, has won, the Nobel Prize, in 1921)
 Albert Einstein has won the Nobel Prize in 1921.
