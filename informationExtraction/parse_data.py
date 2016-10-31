@@ -1,20 +1,15 @@
-import json
+import sys, json
+from optparse import OptionParser
 from pprint import pprint
 import networkx as nx
 import matplotlib.pyplot as plot
 
 '''
-	This file will parse the questions json file and build
+	This code will parse the clauses json file and build
 	a series of knowledge triples around each verb
 	Marbles.ai
 	20 October 2016
 '''
-
-# Example filename containing the questions, NLP and answers
-filename = "../dolphin_t2_final_annotated.json"
-
-# Dictionary of parts of speech to look out for
-pos_dict = {'VERB': ['NSUBJ', 'ATTR'], 'NOUN': ['NUM']}
 
 # Read the json file and return a json object
 def readjson(filename):
@@ -36,37 +31,53 @@ def dumpToken(token, pretty=True):
 	return
 
 # tokenNode object
-class tokenNode:
+class TokenNode(object):
 	def __init__(self, index, content, lemma, pos):
-		self.index = index
-		self.content = content
-		self.lemma = lemma
-		self.pos = pos
+		self._index = index
+		self._content = content
+		self._lemma = lemma
+		self._pos = pos
 
 	def __str__(self):
 		return "Index: %d, Content: %d, Lemma: %s, POS: %s" % \
 			(self.index, self.content, self.lemma, self.pos)
 
 # triple object
-class triple:
-	def __init__(self,verb):
-		self.subjects = []
-		self.verb = verb
-		self.attribute = []
-		self.type = None
-		self.nodes = None
+class Triple:
+	def __init__(self,subject, verb, attributes=None):
+		self._subject = subject
+		self._verb = verb
+		self._attributes = attributes
+        
+        # Stuff for later
+		self._type = None
+    
+    @property
+    def subject(self):
+        return self._subject
+        
+    @property
+    def verb(self):
+        return self._verb
+        
+    @property
+    def attributes(self):
+        return self._attributes
+        
+    @property
+    def types(self):
+        return self._type
+        
 
+    # String representation of the triple
 	def __str__(self):
-		string = 'Subjects: \n'
-		for subject in self.subjects:
-			string += self.nodes[subject[0]].lemma + " " + str(self.nodes[subject[1]].lemma) +'\n'
-		string += "Verbs: \n"
-		string += self.nodes[self.verb].content + '\n'
+		string = "Subject: "
+        string += str(self.subject) +'\n'
+		string += "Verb: "
+		string += self.verb + '\n'
 		string += "Attributes: \n"
-		for attr in self.attribute:
-			string += str(self.nodes[attr].content) + '\n'
-		string += "Type: " + self.type + '\n'
-
+		for attr in self.attributes:
+			string += '\t' + attr + '\n'
 		return string
 
 
@@ -177,25 +188,39 @@ def dumpNLP(nlp):
 	return
 
 # Main Function
-if __name__ == "__main__":
+if __name__ == '__main__':
+    print('Triple Extraction')
+    
+    # Parse Command Line Arguments
+    usage = '%prog [options][text]'
+    parser = OptionParser(usage)
+    parser.add_option('-j', '--json-in', type='string', dest='jsoninfile', help='Input clause JSON file.')
+    parser.add_option('-o', '--json-out', type='string', dest='jsonoutfile', help='Save resulting triples to a json file')
+    parser.add_option('-v', '--verbose', type='bool', dest='VERBOSE', help'Verbose')
+    options, args = parser.parse_args()
 
-	jsonObj = readjson(filename)
+    # Parse the json file
+    if options.jsoninfile is not None:
+        jsonObj = readjson(options.jsoninfile)
+    
+    # No json file
+    else:
+        raise ValueError("No JSON file provided")
 
-	counter = 4
 	# Iterate through all problems
 	for problem in jsonObj:
 
-		# Grab the NLP
-		nlp = problem['nlp']
-
+		# Grab the NLP / cause?
+		#nlp = problem['nlp']
+		print problem
 		# Tokenize
-		tokens = tokenize(nlp)
-
+		#tokens = tokenize(nlp)
+		#print tokens
 		# Let's make a graph!
-		triples = generateTokenGraph(tokens)
+		#triples = generateTokenGraph(tokens)
 
-		for tr in triples:
-			print tr
+		#for tr in triples:
+		#	print tr
 
 		# Grab the rest of the problem
 		#question = problem['sQuestion']
