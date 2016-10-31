@@ -1651,11 +1651,1369 @@
         "tag": "PUNCT"
       }, 
       "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "He", 
+        "beginOffset": 649
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 119, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRON"
+      }, 
+      "lemma": "He"
+    }, 
+    {
+      "text": {
+        "content": "says", 
+        "beginOffset": 652
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 119, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "say"
+    }, 
+    {
+      "text": {
+        "content": "that", 
+        "beginOffset": 657
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 122, 
+        "label": "MARK"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADP"
+      }, 
+      "lemma": "that"
+    }, 
+    {
+      "text": {
+        "content": "you", 
+        "beginOffset": 662
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 122, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRON"
+      }, 
+      "lemma": "you"
+    }, 
+    {
+      "text": {
+        "content": "like", 
+        "beginOffset": 666
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 119, 
+        "label": "CCOMP"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "like"
+    }, 
+    {
+      "text": {
+        "content": "to", 
+        "beginOffset": 671
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 124, 
+        "label": "AUX"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRT"
+      }, 
+      "lemma": "to"
+    }, 
+    {
+      "text": {
+        "content": "swim", 
+        "beginOffset": 674
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 122, 
+        "label": "XCOMP"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "swim"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 678
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 119, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "He", 
+        "beginOffset": 680
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 127, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRON"
+      }, 
+      "lemma": "He"
+    }, 
+    {
+      "text": {
+        "content": "says", 
+        "beginOffset": 683
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 127, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "say"
+    }, 
+    {
+      "text": {
+        "content": "you", 
+        "beginOffset": 688
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 129, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRON"
+      }, 
+      "lemma": "you"
+    }, 
+    {
+      "text": {
+        "content": "like", 
+        "beginOffset": 692
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 127, 
+        "label": "CCOMP"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "like"
+    }, 
+    {
+      "text": {
+        "content": "to", 
+        "beginOffset": 697
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 131, 
+        "label": "AUX"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRT"
+      }, 
+      "lemma": "to"
+    }, 
+    {
+      "text": {
+        "content": "swim", 
+        "beginOffset": 700
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 129, 
+        "label": "XCOMP"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "swim"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 704
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 127, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "The", 
+        "beginOffset": 706
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 134, 
+        "label": "DET"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "The"
+    }, 
+    {
+      "text": {
+        "content": "boss", 
+        "beginOffset": 710
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 135, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "boss"
+    }, 
+    {
+      "text": {
+        "content": "said", 
+        "beginOffset": 715
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 135, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "say"
+    }, 
+    {
+      "text": {
+        "content": "to", 
+        "beginOffset": 720
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 137, 
+        "label": "AUX"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRT"
+      }, 
+      "lemma": "to"
+    }, 
+    {
+      "text": {
+        "content": "start", 
+        "beginOffset": 723
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 135, 
+        "label": "XCOMP"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "start"
+    }, 
+    {
+      "text": {
+        "content": "digging", 
+        "beginOffset": 729
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 137, 
+        "label": "XCOMP"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "dig"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 736
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 135, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "We", 
+        "beginOffset": 738
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 141, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRON"
+      }, 
+      "lemma": "We"
+    }, 
+    {
+      "text": {
+        "content": "started", 
+        "beginOffset": 741
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 141, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "start"
+    }, 
+    {
+      "text": {
+        "content": "digging", 
+        "beginOffset": 749
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 141, 
+        "label": "XCOMP"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "dig"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 756
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 141, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "The", 
+        "beginOffset": 758
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 146, 
+        "label": "DET"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "The"
+    }, 
+    {
+      "text": {
+        "content": "important", 
+        "beginOffset": 762
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 146, 
+        "label": "AMOD"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADJ"
+      }, 
+      "lemma": "important"
+    }, 
+    {
+      "text": {
+        "content": "thing", 
+        "beginOffset": 772
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 147, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "thing"
+    }, 
+    {
+      "text": {
+        "content": "is", 
+        "beginOffset": 778
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 147, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "be"
+    }, 
+    {
+      "text": {
+        "content": "to", 
+        "beginOffset": 781
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 149, 
+        "label": "AUX"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRT"
+      }, 
+      "lemma": "to"
+    }, 
+    {
+      "text": {
+        "content": "keep", 
+        "beginOffset": 784
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 147, 
+        "label": "XCOMP"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "keep"
+    }, 
+    {
+      "text": {
+        "content": "calm", 
+        "beginOffset": 789
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 149, 
+        "label": "ACOMP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADJ"
+      }, 
+      "lemma": "calm"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 793
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 147, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "The", 
+        "beginOffset": 795
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 153, 
+        "label": "DET"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "The"
+    }, 
+    {
+      "text": {
+        "content": "problem", 
+        "beginOffset": 799
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 154, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "problem"
+    }, 
+    {
+      "text": {
+        "content": "is", 
+        "beginOffset": 807
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 154, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "be"
+    }, 
+    {
+      "text": {
+        "content": "that", 
+        "beginOffset": 810
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 160, 
+        "label": "MARK"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADP"
+      }, 
+      "lemma": "that"
+    }, 
+    {
+      "text": {
+        "content": "this", 
+        "beginOffset": 815
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 160, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "this"
+    }, 
+    {
+      "text": {
+        "content": "has", 
+        "beginOffset": 820
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 160, 
+        "label": "AUX"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "have"
+    }, 
+    {
+      "text": {
+        "content": "never", 
+        "beginOffset": 824
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 160, 
+        "label": "NEG"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADV"
+      }, 
+      "lemma": "never"
+    }, 
+    {
+      "text": {
+        "content": "been", 
+        "beginOffset": 830
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 160, 
+        "label": "AUXPASS"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "be"
+    }, 
+    {
+      "text": {
+        "content": "tried", 
+        "beginOffset": 835
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 154, 
+        "label": "CCOMP"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "try"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 840
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 154, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "How", 
+        "beginOffset": 842
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 163, 
+        "label": "ADVMOD"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADV"
+      }, 
+      "lemma": "How"
+    }, 
+    {
+      "text": {
+        "content": "much", 
+        "beginOffset": 846
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 166, 
+        "label": "DEP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADJ"
+      }, 
+      "lemma": "much"
+    }, 
+    {
+      "text": {
+        "content": "does", 
+        "beginOffset": 851
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 166, 
+        "label": "AUX"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "do"
+    }, 
+    {
+      "text": {
+        "content": "it", 
+        "beginOffset": 856
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 166, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRON"
+      }, 
+      "lemma": "it"
+    }, 
+    {
+      "text": {
+        "content": "cost", 
+        "beginOffset": 859
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 166, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "cost"
+    }, 
+    {
+      "text": {
+        "content": "to", 
+        "beginOffset": 864
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 168, 
+        "label": "AUX"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRT"
+      }, 
+      "lemma": "to"
+    }, 
+    {
+      "text": {
+        "content": "join", 
+        "beginOffset": 867
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 166, 
+        "label": "XCOMP"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "join"
+    }, 
+    {
+      "text": {
+        "content": "World", 
+        "beginOffset": 872
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 171, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "World"
+    }, 
+    {
+      "text": {
+        "content": "Resorts", 
+        "beginOffset": 878
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 171, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Resorts"
+    }, 
+    {
+      "text": {
+        "content": "International", 
+        "beginOffset": 886
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 168, 
+        "label": "DOBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "International"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 899
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 166, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "Sue", 
+        "beginOffset": 901
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 174, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Sue"
+    }, 
+    {
+      "text": {
+        "content": "asked", 
+        "beginOffset": 905
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 174, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "ask"
+    }, 
+    {
+      "text": {
+        "content": "George", 
+        "beginOffset": 911
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 174, 
+        "label": "DOBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "George"
+    }, 
+    {
+      "text": {
+        "content": "to", 
+        "beginOffset": 918
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 177, 
+        "label": "AUX"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRT"
+      }, 
+      "lemma": "to"
+    }, 
+    {
+      "text": {
+        "content": "respond", 
+        "beginOffset": 921
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 174, 
+        "label": "XCOMP"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "respond"
+    }, 
+    {
+      "text": {
+        "content": "to", 
+        "beginOffset": 929
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 177, 
+        "label": "PREP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADP"
+      }, 
+      "lemma": "to"
+    }, 
+    {
+      "text": {
+        "content": "her", 
+        "beginOffset": 932
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 180, 
+        "label": "POSS"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRON"
+      }, 
+      "lemma": "her"
+    }, 
+    {
+      "text": {
+        "content": "offer", 
+        "beginOffset": 936
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 178, 
+        "label": "POBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "offer"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 941
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 174, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "The", 
+        "beginOffset": 943
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 183, 
+        "label": "DET"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "The"
+    }, 
+    {
+      "text": {
+        "content": "guy", 
+        "beginOffset": 947
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 188, 
+        "label": "NSUBJPASS"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "guy"
+    }, 
+    {
+      "text": {
+        "content": ",", 
+        "beginOffset": 951
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 186, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": ","
+    }, 
+    {
+      "text": {
+        "content": "John", 
+        "beginOffset": 953
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 186, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "John"
+    }, 
+    {
+      "text": {
+        "content": "said", 
+        "beginOffset": 958
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 188, 
+        "label": "PARATAXIS"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "say"
+    }, 
+    {
+      "text": {
+        "content": ",", 
+        "beginOffset": 963
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 186, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": ","
+    }, 
+    {
+      "text": {
+        "content": "left", 
+        "beginOffset": 965
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 188, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "leave"
+    }, 
+    {
+      "text": {
+        "content": "early", 
+        "beginOffset": 970
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 188, 
+        "label": "ADVMOD"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADV"
+      }, 
+      "lemma": "early"
+    }, 
+    {
+      "text": {
+        "content": "in", 
+        "beginOffset": 976
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 189, 
+        "label": "PREP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADP"
+      }, 
+      "lemma": "in"
+    }, 
+    {
+      "text": {
+        "content": "the", 
+        "beginOffset": 979
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 192, 
+        "label": "DET"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "the"
+    }, 
+    {
+      "text": {
+        "content": "morning", 
+        "beginOffset": 983
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 190, 
+        "label": "POBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "morning"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 990
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 188, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "The", 
+        "beginOffset": 992
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 195, 
+        "label": "DET"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "The"
+    }, 
+    {
+      "text": {
+        "content": "guy", 
+        "beginOffset": 996
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 195, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "guy"
+    }, 
+    {
+      "text": {
+        "content": "John", 
+        "beginOffset": 1000
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 197, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "John"
+    }, 
+    {
+      "text": {
+        "content": "said", 
+        "beginOffset": 1005
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 195, 
+        "label": "RCMOD"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "say"
+    }, 
+    {
+      "text": {
+        "content": "left", 
+        "beginOffset": 1010
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 197, 
+        "label": "CCOMP"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "leave"
+    }, 
+    {
+      "text": {
+        "content": "early", 
+        "beginOffset": 1015
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 198, 
+        "label": "ADVMOD"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADV"
+      }, 
+      "lemma": "early"
+    }, 
+    {
+      "text": {
+        "content": "in", 
+        "beginOffset": 1021
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 199, 
+        "label": "PREP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADP"
+      }, 
+      "lemma": "in"
+    }, 
+    {
+      "text": {
+        "content": "the", 
+        "beginOffset": 1024
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 202, 
+        "label": "DET"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "the"
+    }, 
+    {
+      "text": {
+        "content": "morning", 
+        "beginOffset": 1028
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 200, 
+        "label": "POBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "morning"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 1035
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 195, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "The", 
+        "beginOffset": 1037
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 205, 
+        "label": "DET"
+      }, 
+      "partOfSpeech": {
+        "tag": "DET"
+      }, 
+      "lemma": "The"
+    }, 
+    {
+      "text": {
+        "content": "convention", 
+        "beginOffset": 1041
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 211, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "convention"
+    }, 
+    {
+      "text": {
+        "content": "named", 
+        "beginOffset": 1052
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 205, 
+        "label": "VMOD"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "name"
+    }, 
+    {
+      "text": {
+        "content": "Dogbreath", 
+        "beginOffset": 1058
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 209, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Dogbreath"
+    }, 
+    {
+      "text": {
+        "content": "Vice", 
+        "beginOffset": 1068
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 209, 
+        "label": "NN"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Vice"
+    }, 
+    {
+      "text": {
+        "content": "President", 
+        "beginOffset": 1073
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 206, 
+        "label": "ATTR"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "President"
+    }, 
+    {
+      "text": {
+        "content": "to", 
+        "beginOffset": 1083
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 211, 
+        "label": "AUX"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRT"
+      }, 
+      "lemma": "to"
+    }, 
+    {
+      "text": {
+        "content": "keep", 
+        "beginOffset": 1086
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 211, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "keep"
+    }, 
+    {
+      "text": {
+        "content": "him", 
+        "beginOffset": 1091
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 211, 
+        "label": "DOBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRON"
+      }, 
+      "lemma": "him"
+    }, 
+    {
+      "text": {
+        "content": "happy", 
+        "beginOffset": 1095
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 211, 
+        "label": "ACOMP"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADJ"
+      }, 
+      "lemma": "happy"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 1100
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 211, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
     }
   ], 
   "entities": [
     {
-      "salience": 0.77508372, 
+      "salience": 0.81212521, 
       "mentions": [
         {
           "text": {
@@ -1737,7 +3095,7 @@
       }
     }, 
     {
-      "salience": 0.10331659, 
+      "salience": 0.062436044, 
       "mentions": [
         {
           "text": {
@@ -1771,7 +3129,7 @@
       }
     }, 
     {
-      "salience": 0.027842142, 
+      "salience": 0.02144878, 
       "mentions": [
         {
           "text": {
@@ -1799,7 +3157,7 @@
       }
     }, 
     {
-      "salience": 0.010843387, 
+      "salience": 0.010089078, 
       "mentions": [
         {
           "text": {
@@ -1815,7 +3173,57 @@
       }
     }, 
     {
-      "salience": 0.0040725726, 
+      "salience": 0.0099071451, 
+      "mentions": [
+        {
+          "text": {
+            "content": "John", 
+            "beginOffset": 953
+          }
+        }, 
+        {
+          "text": {
+            "content": "John", 
+            "beginOffset": 1000
+          }
+        }
+      ], 
+      "type": "PERSON", 
+      "name": "John", 
+      "metadata": {}
+    }, 
+    {
+      "salience": 0.0055639581, 
+      "mentions": [
+        {
+          "text": {
+            "content": "Sue", 
+            "beginOffset": 901
+          }
+        }
+      ], 
+      "type": "PERSON", 
+      "name": "Sue", 
+      "metadata": {}
+    }, 
+    {
+      "salience": 0.0029509133, 
+      "mentions": [
+        {
+          "text": {
+            "content": "Los Angeles", 
+            "beginOffset": 568
+          }
+        }
+      ], 
+      "type": "LOCATION", 
+      "name": "Los Angeles", 
+      "metadata": {
+        "wikipedia_url": "http://en.wikipedia.org/wiki/Los_Angeles"
+      }
+    }, 
+    {
+      "salience": 0.0025058598, 
       "mentions": [
         {
           "text": {
@@ -1831,20 +3239,46 @@
       }
     }, 
     {
-      "salience": 0.0034582908, 
+      "salience": 0.0019980737, 
       "mentions": [
         {
           "text": {
-            "content": "Los Angeles", 
-            "beginOffset": 568
+            "content": "George", 
+            "beginOffset": 911
           }
         }
       ], 
-      "type": "LOCATION", 
-      "name": "Los Angeles", 
-      "metadata": {
-        "wikipedia_url": "http://en.wikipedia.org/wiki/Los_Angeles"
-      }
+      "type": "PERSON", 
+      "name": "George", 
+      "metadata": {}
+    }, 
+    {
+      "salience": 0.0013870549, 
+      "mentions": [
+        {
+          "text": {
+            "content": "World Resorts International", 
+            "beginOffset": 872
+          }
+        }
+      ], 
+      "type": "ORGANIZATION", 
+      "name": "World Resorts International", 
+      "metadata": {}
+    }, 
+    {
+      "salience": 0.0013356452, 
+      "mentions": [
+        {
+          "text": {
+            "content": "Dogbreath", 
+            "beginOffset": 1058
+          }
+        }
+      ], 
+      "type": "OTHER", 
+      "name": "Dogbreath", 
+      "metadata": {}
     }
   ], 
   "language": "en", 
@@ -1925,6 +3359,72 @@
       "text": {
         "content": "Bell , a telecommunication company , which is based in Los Angeles , makes and distributes electronic , computer and building products.", 
         "beginOffset": 513
+      }
+    }, 
+    {
+      "text": {
+        "content": "He says that you like to swim.", 
+        "beginOffset": 649
+      }
+    }, 
+    {
+      "text": {
+        "content": "He says you like to swim.", 
+        "beginOffset": 680
+      }
+    }, 
+    {
+      "text": {
+        "content": "The boss said to start digging.", 
+        "beginOffset": 706
+      }
+    }, 
+    {
+      "text": {
+        "content": "We started digging.", 
+        "beginOffset": 738
+      }
+    }, 
+    {
+      "text": {
+        "content": "The important thing is to keep calm.", 
+        "beginOffset": 758
+      }
+    }, 
+    {
+      "text": {
+        "content": "The problem is that this has never been tried.", 
+        "beginOffset": 795
+      }
+    }, 
+    {
+      "text": {
+        "content": "How much does it cost to join World Resorts International.", 
+        "beginOffset": 842
+      }
+    }, 
+    {
+      "text": {
+        "content": "Sue asked George to respond to her offer.", 
+        "beginOffset": 901
+      }
+    }, 
+    {
+      "text": {
+        "content": "The guy , John said , left early in the morning.", 
+        "beginOffset": 943
+      }
+    }, 
+    {
+      "text": {
+        "content": "The guy John said left early in the morning.", 
+        "beginOffset": 992
+      }
+    }, 
+    {
+      "text": {
+        "content": "The convention named Dogbreath Vice President to keep him happy.", 
+        "beginOffset": 1037
       }
     }
   ]

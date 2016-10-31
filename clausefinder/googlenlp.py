@@ -5,22 +5,31 @@ from googleapiclient.errors import HttpError
 from oauth2client.client import GoogleCredentials
 from optparse import OptionParser
 
-
 POS = {
-    'UNKNOWN':'',  # Unknown
     'ADJ':'',      # Adjective
     'ADP':'A',     # Adposition (preposition and postposition)
     'ADV':'',      # Adverb
     'CONJ':'',     # Conjunction
     'DET':'',      # Determiner
-    'NOUN':'',     # Noun (common and proper)
     'NUM':'',      # Cardinal number
     'PRON':'',     # Pronoun
-    'PRT':'',      # Particle or other function word
     'PUNCT':'',    # Punctuation
     'VERB':'V',    # Verb (all tenses and modes)
     'X':'',        # Other: foreign words:{'type':'', 'model':''}, typos:{'type':'', 'model':''}, abbreviations
-    'AFFIX':''     # Affix
+    # Google specific tags
+    'UNKNOWN':'',  # Unknown
+    'PRT':'',      # Particle or other function word
+    'NOUN':'',     # Noun (common and proper)
+    'AFFIX':'',    # Affix
+    # SpaCy specific tags
+    'AUX':'',
+    'INTJ':'',
+    'PART':'',      # Same as Google PRT
+    'PROPN':'',     # Same as Google NOUN
+    'SCONJ':'',
+    'SYM':'',
+    'EOLN':'',
+    'SPACE':''
 }
 
 GRAMMATICAL_RELATIONS = {
@@ -28,7 +37,7 @@ GRAMMATICAL_RELATIONS = {
     'ABBREV':'',       # Abbreviation modifier
     'ACOMP':'C',       # Adjectival complement
     'ADVCL':'',        # Adverbial clause modifier
-    'ADVMOD':'',       # Adverbial modifier
+    'ADVMOD':'Av',     # Adverbial modifier
     'ADVPHMOD':'',     # Adverbial phrase modifier
     'AMOD':'',         # Adjectival modifier of an NP
     'APPOS':'',        # Appositional modifier of an NP
@@ -84,7 +93,7 @@ GRAMMATICAL_RELATIONS = {
     'PRONL':'',        # The relationship between a verb and verbal morpheme
     'PRT':'',          # Particle
     'PS':'',           # Associative or possessive marker
-    'QUANTMOD':'',     # Quantifier phrase modifier
+    'QUANTMOD':'Aq',   # Quantifier phrase modifier
     'RCMOD':'',        # Relative clause modifier
     'RCMODREL':'',     # Complementizer in relative clause
     'RDROP':'',        # Ellipsis without a preceding predicate
@@ -114,6 +123,27 @@ class Token(object):
         self._text = self._gtok['text']['content']
         self._pos = self._gtok['partOfSpeech']['tag']
         self._idx = offset
+
+    def __eq__(self, other):
+        return isinstance(other, Token) and other._idx == self._idx and other._doc._hash == self._doc._hash
+
+    def __ne__(self, other):
+        return not isinstance(other, Token) or other._idx != self._idx or other._doc._hash != self._doc._hash
+
+    def __lt__(self, other):
+        return other._idx < self._idx
+
+    def __gt__(self, other):
+        return other._idx > self._idx
+
+    def __le__(self, other):
+        return other._idx <= self._idx
+
+    def __ge__(self, other):
+        return other._idx >= self._idx
+
+    def __hash__(self):
+        return (self._idx << 5) ^ (self.idx >> 27) ^ self._doc._hash
 
     @property
     def lemme(self):
@@ -253,9 +283,11 @@ class Doc(object):
         self._sentences = nlpResult['sentences']
         self._tokens = nlpResult['tokens']
         self._trees = [ None ] * len(self._sentences)
+        self._hash = 0
         g = -1
         for tok in self._tokens:
             tok['adj'] = []
+            self._hash ^= hash(tok['text']['content'])
         i = 0
         limit = -1
         for tok in self._tokens:
@@ -297,8 +329,7 @@ class Doc(object):
 
 
 class Clause(object):
-    '''Clause in a sentence.'''
-
+    '''View of a clause in a sentence.'''
     def __init__(self, doc, type, subject, verb, objects=None, module=None):
         if not isinstance(doc, Doc):
             raise TypeError
@@ -349,6 +380,7 @@ class Clause(object):
 
     @property
     def text(self):
+        '''Return a string represent the compoents of the clause.'''
         txt = '(%s) (%s)' % (self._subjSpan.text, self._span.text)
         for s in self._objSpans:
             txt += ' (%s)' % s.text
@@ -356,63 +388,261 @@ class Clause(object):
 
     @property
     def type(self):
+        '''Return the type of clause.'''
         return self._type
 
     @property
     def subject(self):
+        '''Return a tuple of the subject token and its span.'''
         return (self._subj, self._subjSpan)
 
     @property
     def root(self):
+        '''Return a tuple of the verb token and its span.'''
         return (self._verb, self._span)
 
     def numObjects(self):
+        '''Return the number of object tokens.'''
         return len(self._objsSpan)
 
     def object(self, i):
+        '''Return a tuple of the object token and its span.'''
         return (self._objs[i], self._objSpans[i])
 
 
-class ClauseFinder(object):
-    '''Find the clauses in a document span'''
-    def __init__(self, sentence):
-        if not isinstance(sentence, SubtreeSpan):
+class ClauseFinderMap(object):
+    '''Helper for ClauseFinder. Should be faster than a dictionary, especially
+    for large documents, since clear, insert and lookup are done in O(1) time.
+    '''
+    def __init__(self, doc):
+        '''Constructor
+
+        Args:
+            doc: A googlenlp.Doc or spacy.Doc instance
+        '''
+        if not isinstance(doc, Doc):
             raise TypeError
-        self._span = sentence
-        self._doc = sentence._doc
+        self._tokMap = [ 0 ] * len(doc)
+        self._tokLimit = 0
+        self._map = []
 
-    def getGovenor(self, token):
-        while token.dep != 'ROOT':
-            if token.pos == 'VERB':
-                return token
-            token = token.head
+    def insertNew(self, key, value):
+        '''Insert value at key if the key is not mapped else do nothing.
+
+        Args:
+            key: An instance of Token.
+            value: The value associated with key.
+
+        Returns:
+            True if the inserted, false if not.
+        '''
+        if self._tokMap[key.idx] >= self._tokLimit or self._map[self._tokMap[key.idx]][0] != key.idx:
+            self._tokMap[key.idx] = self._tokLimit
+            if self._tokLimit < len(self._map):
+                self._map[self._tokLimit] = (key.idx, value)
+            else:
+                assert self._tokLimit == len(self._map)
+                self._map.append((key.idx, value))
+            self._tokLimit += 1
+            return True
+        return False
+
+    def clear(self, deep=True):
+        '''Clears the map to an empty state.
+
+        Args:
+            deep: If true do a deep reset in O(N) time, else do a shallow reset
+                in O(1) time.
+        '''
+        # Once fully debugged we can set default deep=False.
+        if deep:
+            # O(N) for reset, if deep is False then O(1)
+            for i in range(self._tokLimit):
+                self._map[i] = None
+        self._tokLimit = 0
+
+    def append(self, key, value):
+        '''Append an item to the value list associated with key.
+
+        Args:
+            key: The key. If the key does not exists value is added at key. if
+                the key does exist value is appended to the value list at key.
+            value: An instance of Token.
+        '''
+        if not self.insertNew(key, value):
+            self._map[self._tokMap[key.idx]][1].append(value)
+
+    def extend(self, key, value):
+        '''Extent an the value list associated with key.
+
+        Args:
+            key: The key. If the key does not exists value is added at key. if
+                the key does exist value is appended to the value list at key.
+            value: An instance of Token or a list of Token instances.
+        '''
+        if not self.insertNew(key, value):
+            self._map[self._tokMap[key.idx]][1].extend(value)
+
+    def lookup(self, key):
+        '''Get the value at key.
+
+        Args:
+            key: An instance of Token.
+
+        Returns:
+             The value at key.
+        '''
+        if self._tokMap[key.idx] < self._tokLimit and self._map[self._tokMap[key.idx]][0] == key.idx:
+            return self._map[self._tokMap[key.idx]][1]
+
+    def replace(self, key, value):
+        '''Replace the current value at key with a new value.
+
+        Args:
+            key: An instance of Token.
+            value: The new value.
+        '''
+        if self._tokMap[key.idx] < self._tokLimit and self._map[self._tokMap[key.idx]][0] == key.idx:
+            # map items are a tuple so keep list reference
+            L = self._map[self._tokMap[key.idx]][1]
+            del L[0:len(L)]
+            L.extend(value)
+
+    def __len__(self):
+        # Iterable override
+        return self._tokLimit
+
+    def __getitem__(self, slice_i_j):
+        # Iterable override
+        if isinstance(slice_i_j, slice):
+            return self._map(range(slice_i_j))
+        return self._map[slice_i_j]
+
+    def __iter__(self):
+        # Iterable override
+        for i in range(self._tokLimit):
+            yield self._map[i]
+
+
+def getGovenorVerb(token):
+    '''Get the verb govenor of token.
+
+    Args:
+        token: A Token instance.
+
+    Returns:
+        The govenor verb if it exists or None.
+    '''
+    while token.dep != 'ROOT':
+        if token.pos == 'VERB':
+            return token
+        token = token.head
+    if token.pos == 'VERB':
         return token
+    return None
 
-    def findClauses(self):
-        clauseMap =  [ None ] * len(self._doc._tokens)
+
+def getGovenorPOS(token, pos):
+    '''Get the govenor part-of-speech of token.
+
+    Args:
+        token: A Token instance.
+        pos: The part-of-speech
+
+    Returns:
+        The govenor part-of-speechj if it exists or None.
+    '''
+    while token.dep != 'ROOT':
+        if token.pos in pos:
+            return token
+        token = token.head
+    if token.pos in pos:
+        return token
+    return None
+
+
+class ClauseFinder(object):
+    '''Class to find the clauses in a document.'''
+    def __init__(self, doc):
+        '''Constructor.
+
+        Args:
+             doc: A googlenlp.Doc or spacy.Doc
+        '''
+        if not isinstance(doc, Doc):
+            raise TypeError
+        self._doc = doc
+        self._map = ClauseFinderMap(doc)
+
+    def findClauses(self, sentence):
+        '''Find all clauses in a sentence.
+
+        Args:
+            sentence: A Span describing a sentence.
+
+        Returns:
+            A list of Clause instances or a Clause instance.
+        '''
+        if not isinstance(sentence, Span):
+            raise TypeError
+        # Reset lookup table
+        self._map.clear()
         # find all token indexes from this root
-        i = 0
-        for token in self._span:
-            if token.dep in [ 'NSUBJ', 'NSUBJPASS', 'CSUBJ', 'CSUBJPASS', 'NOMCSUBJ', 'NOMCSUBJPASS' ]:
+        for token in sentence:
+            # 'NSUBJPASS', 'CSUBJ', 'CSUBJPASS', 'NOMCSUBJ', 'NOMCSUBJPASS'
+            if token.dep in [ 'NSUBJ', 'NSUBJPASS' ]:
                 S = token
-                V = self.getGovenor(token)
-                if clauseMap[V.idx] is not None:
-                    if clauseMap[V.idx][1].idx != V.idx:
-                        clauseMap[V.idx] = [ S ].extend(clauseMap[V.idx])
+                V = getGovenorVerb(token)
+                if V is None:
+                    continue
+                elif not self._map.insertNew(V, [S, V]):
+                    X = self._map.lookup(V)
+                    if X[1].idx != V.idx:
+                        newX = [ S ]
+                        newX.extend(X)
+                        self._map.replace(V, newX)
+
+            # 'XCOMP','CCOMP','ATTR'
+            elif token.pos == 'ADP':
+                if token.head.dep in [ 'ADVMOD', 'QUANTMOD' ] and (token.head.idx+1) == token.idx:
+                    O = token.head
                 else:
-                    clauseMap[V.idx] = [ S, V ]
-            elif token.dep in [ 'DOBJ', 'IOBJ', 'CCOMP', 'XCOMP', 'ACOMP', 'ATTR' ] or token.pos in [ 'ADP' ]:
+                    O = token
+                V = getGovenorVerb(token)
+                if V is None: continue
+                # If the Adposition is part of a CCOMP then we ignore
+                #if V.dep == 'CCOMP' and token.pos == 'ADP': continue
+                if not self._map.insertNew(V, [V, O]):
+                    self._map.append(V, O)
+
+            elif token.dep in [ 'DOBJ', 'IOBJ', 'ACOMP' ]:
                 O = token
-                V = self.getGovenor(token)
-                if clauseMap[V.idx] is not None:
-                    clauseMap[V.idx].append(O)
-                else:
-                    clauseMap[V.idx] = [ V, O ]
-            i += 1
+                V = getGovenorVerb(token)
+                if V is None: continue
+                # If the Adposition is part of a CCOMP then we ignore
+                #if V.dep == 'CCOMP' and token.pos == 'ADP': continue
+                if not self._map.insertNew(V, [V, O]):
+                    self._map.append(V, O)
+
+            elif token.dep in [ 'XCOMP', 'CCOMP' ]:
+                # Xcomp can have a VERB or ADJ as a parent
+                VA = getGovenorPOS(token.head, ['VERB', 'ADJ'])
+                if VA is not None:
+                    if VA.dep == 'ROOT':
+                        # OK token will be used as is
+                        V = VA
+                        VA = token
+                    else:
+                        # TODO: can we further decompose xcomp
+                        V = getGovenorVerb(VA.head)
+                        if V is None: continue
+                    if not self._map.insertNew(V, [V, VA]):
+                        if VA not in self._map.lookup(V):
+                            self._map.append(V, VA)
 
         clauses = []
-        for m in clauseMap:
-            if m is None: continue
+        for k,m in self._map:
+            if m is None or GRAMMATICAL_RELATIONS[m[0].dep] != 'S': continue
             type = ''
             for tok in m:
                 type += POS[tok.pos] + GRAMMATICAL_RELATIONS[tok.dep]
@@ -487,27 +717,25 @@ if __name__ == '__main__':
     parser.add_option('-c', '--compact', action='store_true', dest='compact', help='compact json output.')
     options, args = parser.parse_args()
 
+    i = 1
     if options.jsoninfile is not None:
         print('Processing json file %s' % options.jsoninfile)
         with open(options.jsoninfile, 'rt') as fd:
             doc = Doc(json.load(fd))
+            i = 1
+            cf = ClauseFinder(doc)
             for s in doc.sents:
-                cf = ClauseFinder(s)
-                clauses = cf.findClauses()
+                clauses = cf.findClauses(s)
                 for clause in clauses:
-                    print('%s: %s' % (clause.type, clause.text))
+                    print('%i. %s: %s' % (i, clause.type, clause.text))
+                i += 1
 
     if options.infile is not None:
         print('Processing text file %s' % options.infile)
         nlp = GoogleNLP()
         with open(options.infile, 'rt') as fd:
             lines = fd.readlines()
-        cleanlines = []
-        for ln in lines:
-            ln = ln.strip()
-            if len(ln) == 0 or ln[0] == '#':
-                continue
-            cleanlines.append(ln)
+        cleanlines = filter(lambda x: len(x) != 0 and x[0] != '#', [x.strip() for x in lines])
         result = nlp.parse(' '.join(cleanlines))
         if options.jsonoutfile is not None:
             with open(options.jsonoutfile, 'w') as fd:
@@ -516,11 +744,13 @@ if __name__ == '__main__':
                 else:
                     json.dump(result, fp=fd, indent=2)
         doc = Doc(result)
+        cf = ClauseFinder(doc)
         for s in doc.sents:
-            cf = ClauseFinder(s)
-            clauses = cf.findClauses()
+            clauses = cf.findClauses(s)
             for clause in clauses:
-                print('%s: %s' % (clause.type, clause.text))
+                print('%i. %s: %s' % (i, clause.type, clause.text))
+            i += 1
+
     elif len(args) != 0:
         nlp = GoogleNLP()
 
@@ -528,9 +758,9 @@ if __name__ == '__main__':
         print('Processing command line text')
         nlp.parse(''.join(args))
         doc = Doc(result)
+        cf = ClauseFinder(doc)
         for s in doc.sents:
-            cf = ClauseFinder(s)
-            clauses = cf.findClauses()
+            clauses = cf.findClauses(s)
             for clause in clauses:
                 print('%s: %s' % (clause.type, clause.text))
 
