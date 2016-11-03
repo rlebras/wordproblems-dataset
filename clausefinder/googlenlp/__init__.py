@@ -19,6 +19,9 @@ class Token(object):
         self._adj = self._gtok['adj']
         self._idx = offset
 
+    def __repr__(self):
+        return '(%i,\"%s\"|%s,%s)' % (self._idx, self._text,self.pos.text,self.dep.text)
+
     def __eq__(self, other):
         return isinstance(other, Token) and other._idx == self._idx and other._doc._hash == self._doc._hash
 
@@ -144,6 +147,9 @@ class Span(object):
         for k in self._indexes:
             yield Token(self._doc, k)
 
+    def __repr__(self):
+        return self.text
+
     def union(self, other):
         '''Union two spans.'''
         if other is None or len(other) == 0: return
@@ -227,6 +233,26 @@ class SubtreeSpan(Span):
         super(SubtreeSpan, self).__init__(doc, indexes)
         self._rootIdx = idx
 
+    def __repr__(self):
+        if len(self._indexes) == 0:
+            return '(%i,\"\")' % self._rootIdx
+        txt = '(%i,\"%s' % (self._rootIdx, self._doc._tokens[self._indexes[0]]['text']['content'])
+        for i in self._indexes[1:]:
+            gtok = self._doc._tokens[i]
+            if gtok['partOfSpeech']['tag'] == pos.PUNCT.text:
+                txt += gtok['text']['content']
+            else:
+                txt += ' ' + gtok['text']['content']
+        return txt + '\")'
+
+    def repair(self):
+        '''If the span no longer includes the root index due to complement or intersect
+        operations then this ensures the root idx is included. Also sorts indexes.
+        '''
+        if self._rootIdx not in self._indexes:
+            self._indexes.append(self._rootIdx)
+        self._indexes.sort()
+
     @property
     def root(self):
         '''Return the root of the subtree span.
@@ -248,6 +274,11 @@ class Doc(object):
     '''Google NLP Document. The class has a similar interface to spacy.Doc'''
 
     def __init__(self, nlpResult):
+        '''Construct a document form a Google NLP result.
+
+        Args:
+            nlpResult: The result of a GoogleNLP.parse() call.
+        '''
         self._sentences = nlpResult['sentences']
         self._tokens = nlpResult['tokens']
         self._trees = [None] * len(self._sentences)
@@ -282,12 +313,12 @@ class Doc(object):
 
     @property
     def text(self):
-        span = SubtreeSpan(self, range(len(self._tokens)))
+        span = Span(self, range(len(self._tokens)))
         return span.text
 
     @property
     def text_with_ws(self):
-        span = SubtreeSpan(self, range(len(self._tokens)))
+        span = Span(self, range(len(self._tokens)))
         return span.text_with_ws
 
     @property
@@ -329,13 +360,14 @@ class GoogleNLP(object):
         self._service = getGoogleNlpService()
 
     def parse(self, text):
-        '''Parse text and return a DependencyTrees instance
+        '''Parse text and return result as per Google NLP API spec. The
+        result can be used to construct a Doc instance.
 
         Args:
             text: The text to parse.
 
         Returns:
-            A DependencyTrees instance.
+            A Google NLP result.
         '''
         body = getGoogleNlpRequestBody(text)
         request = self._service.documents().annotateText(body=body)

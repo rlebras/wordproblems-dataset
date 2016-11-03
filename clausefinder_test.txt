@@ -132,8 +132,27 @@ Albert Einstein died in Princeton in 1955.
 #     (Albert Einstein, remained, in Princeton, until his death)
 Albert Einstein remained in Princeton until his death.
 
-# S10: SVcCA SVC (Albert Einstein, is, a scientist)
-#      (Albert Einstein, is, a scientist, of the 20th century)
+# S10: SVcCA SVC
+#
+# Google produces this:
+# IDX   0      1        2     3    4          5     6    7     8
+# HEAD  1      2        2     4    2          4     8    8     5
+# DEP   nn     nsubj    root  det  attr       prep  det  amod  pobj
+# SENT  Albert Einstein is    a    scientist  of    the  20th  century
+#                       die
+#       NOUN   NOUN     VERB  DET  NOUN       ADP   DET  ADJ   NOUN
+#
+# Stanfors produces this:
+# IDX   0      1        2     3    4          5     6    7     8
+# HEAD  1      4        4     4    4          4     8    8     5
+# DEP   nn     nsubj    cop   det  root       prep  det  amod  pobj
+# SENT  Albert Einstein is    a    scientist  of    the  20th  century
+#                       die
+#       NOUN   NOUN     VERB  DET  NOUN       ADP   DET  ADJ   NOUN
+#
+# EXPECTED (Albert Einstein) (is) (a scientist)
+#     (Albert Einstein) (is a scientist) (of the 20th century)
+
 Albert Einstein is a scientist of the 20th century.
 
 # S11: SVmtOA SVO (Albert Einstein, has won, the Nobel Prize)

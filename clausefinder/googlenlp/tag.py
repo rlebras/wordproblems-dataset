@@ -27,6 +27,9 @@ class ConstantTag(object):
     def __hash__(self):
         return (self._id << 5) ^ (self.id >> 27)
 
+    def __repr__(self):
+        return self._name
+
     @property
     def id(self):
         return self._id

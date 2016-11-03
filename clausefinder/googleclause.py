@@ -60,6 +60,7 @@ class Clause(object):
         # Handle synthetic spans
         if isinstance(verbSpan, googlenlp.Span):
             self._span._indexes = filter(lambda x: x <= verbSpan.idx, verbSpan._indexes)
+        '''
         for s in self._objSpans:
             # Truncate after first occurrence of punctuation or conjunction
             i = -1
@@ -76,6 +77,10 @@ class Clause(object):
                         break
             if first > 0 or last > 0:
                 s._indexes = s._indexes[first:last]
+        '''
+
+    def __repr__(self):
+        return '<' + self.text + '>'
 
     @property
     def text(self):
@@ -112,7 +117,7 @@ class Clause(object):
 class ParsedClause(Clause):
     '''View of a clause in a sentence.'''
 
-    def __init__(self, doc, type, subject, verb, objects=None, exclude=None):
+    def __init__(self, doc, type, subject, verb, objects=None, exclude=None, merge=None):
         if not isinstance(doc, googlenlp.Doc):
             raise TypeError
         if not isinstance(subject, googlenlp.Token):
@@ -180,8 +185,7 @@ class ParsedClause(Clause):
             # Remove dep mark starting a span
             if len(s._indexes) > 0 and doc[s._indexes[0]].dep == googlenlp.dep.MARK:
                 s._indexes.pop(0)
-            if len(s._indexes) == 0:
-                objSpans.pop(i)
+            s.repair()
 
         verbSpan = googlenlp.SubtreeSpan(verb, shallow=True)
         if verb.idx > 0 and doc[verb.idx].dep == googlenlp.dep.AUXPASS:
@@ -192,6 +196,18 @@ class ParsedClause(Clause):
             complement = [verb.idx]
         verbSpan._indexes = complement
         '''
+        subjSpan.repair()
+        verbSpan.repair()
+        # Process merges formatted as: [ [focusIdx1, idx1, ...], [focusIdx2, idxN, ...]]
+        if merge is not None and len(merge) > 0:
+            for m in merge:
+                focus = objSpans[ m[0] ]
+                m = m[1:]
+                m.sort()
+                for i in reversed(m):
+                    focus.union(objSpans[i])
+                    objSpans.pop(i)
+        # Finally call base class
         super(ParsedClause, self).__init__(doc=doc, type=type, subjectSpan=subjSpan, verbSpan=verbSpan, objectSpans=objSpans)
 
 
@@ -278,9 +294,8 @@ def getFirstOfConj(token):
         The first token in the conjunction.
     '''
     assert token.dep == googlenlp.dep.CONJ
-    pos = token.pos
     while token.dep != googlenlp.dep.ROOT:
-        if token.dep != googlenlp.dep.CONJ and token.pos == pos:
+        if token.dep != googlenlp.dep.CONJ:
             return token
         token = token.head
     return token
@@ -376,8 +391,8 @@ class ClauseFinder(object):
             if state[0] == states.NSUBJ_FIND:
                 if getGovenorNsubj(token) != state[1]:
                     state = stk.pop(-1)
-                else:
-                    excludeList.append(token)
+                #else:
+                #    excludeList.append(token)
 
             # 'NSUBJPASS', 'CSUBJ', 'CSUBJPASS', 'NOMCSUBJ', 'NOMCSUBJPASS'
             if token.dep  == googlenlp.dep.NSUBJ:
@@ -407,7 +422,7 @@ class ClauseFinder(object):
                 else:
                     self._processAsObj(token, getGovenorVerb(token))
 
-            elif token.dep in [googlenlp.dep.DOBJ, googlenlp.dep.IOBJ, googlenlp.dep.ACOMP]:
+            elif token.dep in [googlenlp.dep.DOBJ, googlenlp.dep.IOBJ, googlenlp.dep.ACOMP, googlenlp.dep.ATTR]:
                 self._processAsObj(token)
 
             elif token.dep == googlenlp.dep.APPOS:
@@ -480,16 +495,26 @@ class ClauseFinder(object):
                 for V in conjVList:
                     for O in conjOList:
                         objs[1] = O
-                        conjAList = self._conjAMap.lookup(m[1])
+                        conjAList = self._conjAMap.lookup(m[2])
                         if conjAList is None:
                             clauses.append(ParsedClause(doc=self._doc, type=type, subject=m[0], verb=V, objects=objs[1:],
                                                         exclude=exclude))
                         else:
-                            assert conjAList[0] == O
-                            for A in conjAList:
+                            excludeA = exclude
+                            if conjAList[0].dep == googlenlp.dep.AMOD:
+                                # Tell ParsedClause to combine objs[0:2] into a single term
+                                merge = [ [1,0] ]
+                            else:
+                                merge = None
+                            for i in range(len(conjAList)):
+                                A = conjAList[i]
                                 objs[0] = A
+                                x = []
+                                x.extend(excludeA)
+                                x.extend(conjAList[i+1:])
                                 clauses.append(ParsedClause(doc=self._doc, type=type, subject=m[0], verb=V, objects=objs,
-                                                            exclude=exclude))
+                                                            exclude=x, merge=merge))
+                                excludeA.append(A)
                             objs[0] = None
                         objs[1] = None
             else:

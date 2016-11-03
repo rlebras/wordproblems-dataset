@@ -65,7 +65,7 @@ class ClauseFinderMap(object):
             self._map[self._tokMap[key.idx]][1].append(value)
 
     def extend(self, key, value):
-        '''Extent an the value list associated with key.
+        '''Extend the value list associated with key.
 
         Args:
             key: The key. If the key does not exists value is added at key. if

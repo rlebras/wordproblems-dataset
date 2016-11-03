@@ -17,7 +17,7 @@ _GOOGLE_POS_NAMES = [
     'PRON',     # Pronoun
     'PUNCT',    # Punctuation
     'VERB',     # Verb (all tenses and modes)
-    'X'         # Other: foreign words:{'type':'', 'model':''}, typos:{'type':'', 'model':''}, abbreviations
+    'X'         # Other: foreign words, abbreviations
 ]
 
 
