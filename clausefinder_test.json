@@ -3009,11 +3009,291 @@
         "tag": "PUNCT"
       }, 
       "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "Reagan", 
+        "beginOffset": 1102
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 217, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "NOUN"
+      }, 
+      "lemma": "Reagan"
+    }, 
+    {
+      "text": {
+        "content": "has", 
+        "beginOffset": 1109
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 217, 
+        "label": "AUX"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "have"
+    }, 
+    {
+      "text": {
+        "content": "died", 
+        "beginOffset": 1113
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 217, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "die"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 1117
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 217, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "He", 
+        "beginOffset": 1119
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 221, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRON"
+      }, 
+      "lemma": "He"
+    }, 
+    {
+      "text": {
+        "content": "should", 
+        "beginOffset": 1122
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 221, 
+        "label": "AUX"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "should"
+    }, 
+    {
+      "text": {
+        "content": "leave", 
+        "beginOffset": 1129
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 221, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "leave"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 1134
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 221, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
+    }, 
+    {
+      "text": {
+        "content": "Do", 
+        "beginOffset": 1136
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 225, 
+        "label": "AUX"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "Do"
+    }, 
+    {
+      "text": {
+        "content": "you", 
+        "beginOffset": 1139
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 225, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRON"
+      }, 
+      "lemma": "you"
+    }, 
+    {
+      "text": {
+        "content": "think", 
+        "beginOffset": 1143
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 225, 
+        "label": "ROOT"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "think"
+    }, 
+    {
+      "text": {
+        "content": "that", 
+        "beginOffset": 1149
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 230, 
+        "label": "MARK"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADP"
+      }, 
+      "lemma": "that"
+    }, 
+    {
+      "text": {
+        "content": "he", 
+        "beginOffset": 1154
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 230, 
+        "label": "NSUBJPASS"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRON"
+      }, 
+      "lemma": "he"
+    }, 
+    {
+      "text": {
+        "content": "will", 
+        "beginOffset": 1157
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 230, 
+        "label": "AUX"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "will"
+    }, 
+    {
+      "text": {
+        "content": "have", 
+        "beginOffset": 1162
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 230, 
+        "label": "AUX"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "have"
+    }, 
+    {
+      "text": {
+        "content": "left", 
+        "beginOffset": 1167
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 225, 
+        "label": "CCOMP"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "leave"
+    }, 
+    {
+      "text": {
+        "content": "when", 
+        "beginOffset": 1172
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 233, 
+        "label": "ADVMOD"
+      }, 
+      "partOfSpeech": {
+        "tag": "ADV"
+      }, 
+      "lemma": "when"
+    }, 
+    {
+      "text": {
+        "content": "we", 
+        "beginOffset": 1177
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 233, 
+        "label": "NSUBJ"
+      }, 
+      "partOfSpeech": {
+        "tag": "PRON"
+      }, 
+      "lemma": "we"
+    }, 
+    {
+      "text": {
+        "content": "come", 
+        "beginOffset": 1180
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 230, 
+        "label": "ADVCL"
+      }, 
+      "partOfSpeech": {
+        "tag": "VERB"
+      }, 
+      "lemma": "come"
+    }, 
+    {
+      "text": {
+        "content": ".", 
+        "beginOffset": 1184
+      }, 
+      "dependencyEdge": {
+        "headTokenIndex": 225, 
+        "label": "P"
+      }, 
+      "partOfSpeech": {
+        "tag": "PUNCT"
+      }, 
+      "lemma": "."
     }
   ], 
   "entities": [
     {
-      "salience": 0.81212521, 
+      "salience": 0.79038942, 
       "mentions": [
         {
           "text": {
@@ -3095,7 +3375,7 @@
       }
     }, 
     {
-      "salience": 0.062436044, 
+      "salience": 0.05421989, 
       "mentions": [
         {
           "text": {
@@ -3129,7 +3409,23 @@
       }
     }, 
     {
-      "salience": 0.02144878, 
+      "salience": 0.022120873, 
+      "mentions": [
+        {
+          "text": {
+            "content": "Reagan", 
+            "beginOffset": 1102
+          }
+        }
+      ], 
+      "type": "PERSON", 
+      "name": "Reagan", 
+      "metadata": {
+        "wikipedia_url": "http://en.wikipedia.org/wiki/Ronald_Reagan"
+      }
+    }, 
+    {
+      "salience": 0.021989811, 
       "mentions": [
         {
           "text": {
@@ -3157,7 +3453,7 @@
       }
     }, 
     {
-      "salience": 0.010089078, 
+      "salience": 0.010335049, 
       "mentions": [
         {
           "text": {
@@ -3173,7 +3469,7 @@
       }
     }, 
     {
-      "salience": 0.0099071451, 
+      "salience": 0.010148546, 
       "mentions": [
         {
           "text": {
@@ -3193,7 +3489,7 @@
       "metadata": {}
     }, 
     {
-      "salience": 0.0055639581, 
+      "salience": 0.0055564768, 
       "mentions": [
         {
           "text": {
@@ -3207,7 +3503,7 @@
       "metadata": {}
     }, 
     {
-      "salience": 0.0029509133, 
+      "salience": 0.0030212926, 
       "mentions": [
         {
           "text": {
@@ -3223,7 +3519,7 @@
       }
     }, 
     {
-      "salience": 0.0025058598, 
+      "salience": 0.0025655418, 
       "mentions": [
         {
           "text": {
@@ -3239,7 +3535,21 @@
       }
     }, 
     {
-      "salience": 0.0019980737, 
+      "salience": 0.0013673402, 
+      "mentions": [
+        {
+          "text": {
+            "content": "Dogbreath", 
+            "beginOffset": 1058
+          }
+        }
+      ], 
+      "type": "OTHER", 
+      "name": "Dogbreath", 
+      "metadata": {}
+    }, 
+    {
+      "salience": 0.0011038471, 
       "mentions": [
         {
           "text": {
@@ -3253,7 +3563,7 @@
       "metadata": {}
     }, 
     {
-      "salience": 0.0013870549, 
+      "salience": 0.00076609425, 
       "mentions": [
         {
           "text": {
@@ -3264,20 +3574,6 @@
       ], 
       "type": "ORGANIZATION", 
       "name": "World Resorts International", 
-      "metadata": {}
-    }, 
-    {
-      "salience": 0.0013356452, 
-      "mentions": [
-        {
-          "text": {
-            "content": "Dogbreath", 
-            "beginOffset": 1058
-          }
-        }
-      ], 
-      "type": "OTHER", 
-      "name": "Dogbreath", 
       "metadata": {}
     }
   ], 
@@ -3425,6 +3721,24 @@
       "text": {
         "content": "The convention named Dogbreath Vice President to keep him happy.", 
         "beginOffset": 1037
+      }
+    }, 
+    {
+      "text": {
+        "content": "Reagan has died.", 
+        "beginOffset": 1102
+      }
+    }, 
+    {
+      "text": {
+        "content": "He should leave.", 
+        "beginOffset": 1119
+      }
+    }, 
+    {
+      "text": {
+        "content": "Do you think that he will have left when we come.", 
+        "beginOffset": 1136
       }
     }
   ]
