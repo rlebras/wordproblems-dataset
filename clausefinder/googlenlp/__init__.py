@@ -1,9 +1,12 @@
 # Google NLP Interface
 
-import dep, pos
+from . import dep
+from . import pos
 from googleapiclient import discovery
 from googleapiclient.errors import HttpError
 from oauth2client.client import GoogleCredentials
+from clausefinder.common import IndexSpan as Span
+from clausefinder.common import SubtreeSpan
 
 class Token(object):
     '''A token in the dependency tree. The class has a similar interface to spacy.Token
@@ -12,15 +15,15 @@ class Token(object):
     def __init__(self, doc, offset):
         self._doc = doc
         self._gtok = doc._tokens[offset]
-        self._lemma = self._gtok['lemma']
-        self._text = self._gtok['text']['content']
-        self._dep = dep.TAG[ self._gtok['dependencyEdge']['label'] ]
-        self._pos = pos.TAG[ self._gtok['partOfSpeech']['tag'] ]
+        self._lemma = None  # self._gtok['lemma']
+        self._text = None   # self._gtok['text']['content']
+        self._dep = None    # dep.TAG[ self._gtok['dependencyEdge']['label'] ]
+        self._pos = None    # pos.TAG[ self._gtok['partOfSpeech']['tag'] ]
         self._adj = self._gtok['adj']
         self._idx = offset
 
     def __repr__(self):
-        return '(%i,\"%s\"|%s,%s)' % (self._idx, self._text,self.pos.text,self.dep.text)
+        return '(%i,\"%s\"|%s,%s)' % (self._idx, self.text, self.pos.text, self.dep.text)
 
     def __eq__(self, other):
         return isinstance(other, Token) and other._idx == self._idx and other._doc._hash == self._doc._hash
@@ -44,23 +47,29 @@ class Token(object):
         return (self._idx << 5) ^ (self.idx >> 27) ^ self._doc._hash
 
     @property
-    def lemme(self):
+    def lemma(self):
+        if self._lemma is None:
+            self._lemma = self._gtok['lemma']
         return self._lemma
 
     @property
     def orth(self):
-        return self._text
+        return self.text
 
     @property
     def lower(self):
-        return self._text.lower()
+        return self.text.lower()
 
     @property
     def dep(self):
+        if self._dep is None:
+            self._dep = dep.TAG[self._gtok['dependencyEdge']['label']]
         return self._dep
 
     @property
     def pos(self):
+        if self._pos is None:
+            self._pos = pos.TAG[self._gtok['partOfSpeech']['tag']]
         return self._pos
 
     @property
@@ -97,6 +106,8 @@ class Token(object):
 
     @property
     def text(self):
+        if self._text is None:
+            self._text = self._gtok['text']['content']
         return self._text
 
     @property
@@ -124,150 +135,6 @@ class Token(object):
 
     def isAncestor(self, descendent):
         return descendent.idx in SubtreeSpan(self._doc, self._idx)._indexes
-
-
-class Span(object):
-    '''View of a document. The class has a similar interface to spacy.Span
-    '''
-
-    def __init__(self, doc, indexes=None):
-        self._doc = doc
-        if indexes is None:
-            self._indexes = []
-        else:
-            self._indexes = indexes
-
-    def __len__(self):
-        return len(self._indexes)
-
-    def __getitem__(self, i):
-        return Token(self._doc, i)
-
-    def __iter__(self):
-        for k in self._indexes:
-            yield Token(self._doc, k)
-
-    def __repr__(self):
-        return self.text
-
-    def union(self, other):
-        '''Union two spans.'''
-        if other is None or len(other) == 0: return
-        self._indexes.extend(filter(lambda x: x not in self._indexes, other._indexes))
-        self._indexes.sort()
-
-    def complement(self, other):
-        '''Remove other from this span.'''
-        if other is None or len(other) == 0: return
-        self._indexes = filter(lambda x: x not in other._indexes, self._indexes)
-
-    def intersect(self, other):
-        '''Find common span.'''
-        if other is None or len(other) == 0:
-            self._indexes = []
-            return
-        self._indexes = filter(lambda x: x in other._indexes, self._indexes)
-
-    @property
-    def text(self):
-        if len(self._indexes) == 0:
-            return ''
-        txt = self._doc._tokens[self._indexes[0]]['text']['content']
-        for i in self._indexes[1:]:
-            gtok = self._doc._tokens[i]
-            if gtok['partOfSpeech']['tag'] == pos.PUNCT.text:
-                txt += gtok['text']['content']
-            else:
-                txt += ' ' + gtok['text']['content']
-        return txt
-
-    @property
-    def text_with_ws(self):
-        return self.text
-
-
-class SubtreeSpan(Span):
-    '''View of a document. Specialization of Span.'''
-
-    def __init__(self, doc, idx=-1, removePunct=False, shallow=False):
-        '''Constructor.
-
-        Args:
-            idx: A token index or a Token instance.
-            removePunct: If True punctuation is excluded from the span.
-            shallow: If shallow is a boolean and True then don't add dependent
-                tokens to span. If shallow isa list of token indexes these are
-                used as the adjacency for the token a idx.
-        '''
-        if isinstance(doc, Token):
-            idx = doc.idx
-            doc = doc.doc
-            indexes = [idx]
-        else:
-            indexes = [idx]
-
-        stk = None
-        if isinstance(shallow, list):
-            if len(shallow) > 0:
-                stk = shallow
-            shallow = False
-
-        if not shallow:
-            if stk is None:
-                stk = [x for x in doc[idx]._adj]
-            indexes.extend(stk)
-            while len(stk) != 0:
-                tok = doc[stk.pop()]
-                stk.extend(tok._adj)
-                indexes.extend(tok._adj)
-            '''
-            stk = [ idx ]
-            while len(stk) != 0:
-                gtok = doc._tokens[ stk.pop() ]
-                stk.extend(gtok['adj'])
-                indexes.extend(gtok['adj'])
-            '''
-            if removePunct:
-                indexes = filter(lambda x: not doc[x].is_punct, indexes)
-            indexes.sort()
-        super(SubtreeSpan, self).__init__(doc, indexes)
-        self._rootIdx = idx
-
-    def __repr__(self):
-        if len(self._indexes) == 0:
-            return '(%i,\"\")' % self._rootIdx
-        txt = '(%i,\"%s' % (self._rootIdx, self._doc._tokens[self._indexes[0]]['text']['content'])
-        for i in self._indexes[1:]:
-            gtok = self._doc._tokens[i]
-            if gtok['partOfSpeech']['tag'] == pos.PUNCT.text:
-                txt += gtok['text']['content']
-            else:
-                txt += ' ' + gtok['text']['content']
-        return txt + '\")'
-
-    def repair(self):
-        '''If the span no longer includes the root index due to complement or intersect
-        operations then this ensures the root idx is included. Also sorts indexes.
-        '''
-        if self._rootIdx not in self._indexes:
-            self._indexes.append(self._rootIdx)
-        self._indexes.sort()
-
-    @property
-    def root(self):
-        '''Return the root of the subtree span.
-
-        Returns: A Token instance.
-        '''
-        return self._doc[self._rootIdx]
-
-    @property
-    def idx(self):
-        '''Return the root index of the subtree span.
-
-        Returns: A index onto the Token array.
-        '''
-        return self._rootIdx
 
 
 class Doc(object):
