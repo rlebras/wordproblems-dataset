@@ -1,5 +1,3 @@
-#import googlenlp
-
 
 class ClauseFinderMap(object):
     '''Helper for ClauseFinder. Should be faster than a dictionary, especially
@@ -114,6 +112,164 @@ class ClauseFinderMap(object):
         # Iterable override
         for i in range(self._tokLimit):
             yield self._map[i]
+
+
+class IndexSpan(object):
+    '''View of a document. The class has a similar interface to spacy.Span
+    '''
+    def __init__(self, doc, indexes=None):
+        self._doc = doc
+        if indexes is None:
+            self._indexes = []
+        else:
+            self._indexes = indexes
+
+    def __len__(self):
+        return len(self._indexes)
+
+    def __getitem__(self, i):
+        return self._doc[i]
+
+    def __iter__(self):
+        for k in self._indexes:
+            yield self._doc[k]
+
+    def __repr__(self):
+        return self.text
+
+    def union(self, other):
+        '''Union two spans.'''
+        if other is None or len(other) == 0: return
+        self._indexes.extend(filter(lambda x: x not in self._indexes, other._indexes))
+        self._indexes.sort()
+
+    def complement(self, other):
+        '''Remove other from this span.'''
+        if other is None or len(other) == 0: return
+        self._indexes = filter(lambda x: x not in other._indexes, self._indexes)
+
+    def intersect(self, other):
+        '''Find common span.'''
+        if other is None or len(other) == 0:
+            self._indexes = []
+            return
+        self._indexes = filter(lambda x: x in other._indexes, self._indexes)
+
+    @property
+    def text(self):
+        if len(self._indexes) == 0:
+            return ''
+        txt = self._doc[self._indexes[0]].text
+        for i in self._indexes[1:]:
+            tok = self._doc[i]
+            if tok.is_punct:
+                txt += tok.text
+            else:
+                txt += ' ' + tok.text
+        return txt
+
+    @property
+    def text_with_ws(self):
+        return self.text
+
+
+class SubtreeSpan(IndexSpan):
+    '''View of a document. Specialization of IndexSpan.'''
+
+    def __init__(self, doc, idx=None, removePunct=False, shallow=False):
+        '''Constructor.
+
+        Args:
+            idx: A token index or a Token instance.
+            removePunct: If True punctuation is excluded from the span.
+            shallow: If shallow is a boolean and True then don't add dependent
+                tokens to span. If shallow isa list of token indexes these are
+                used as the adjacency for the token a idx.
+        '''
+        if idx is not None and isinstance(idx, (int,long)):
+            indexes = [idx]
+        else:
+            idx = doc.idx
+            doc = doc.doc
+            indexes = [idx]
+
+        stk = None
+        if isinstance(shallow, list):
+            if len(shallow) > 0:
+                stk = shallow
+            shallow = False
+
+        if not shallow:
+            tok = doc[idx]
+            if hasattr(tok, 'adj'):
+                # Google document
+                if stk is None:
+                    stk = []
+                    stk.extend(tok.adj)
+                indexes.extend(stk)
+                while len(stk) != 0:
+                    tok = doc[stk.pop()]
+                    stk.extend(tok.adj)
+                    indexes.extend(tok.adj)
+
+            else:
+                # Spacy document
+                if stk is None:
+                    stk = [x.idx for x in tok.children]
+                indexes.extend(stk)
+                while len(stk) != 0:
+                    tok = doc[stk.pop()]
+                    adj = [x.idx for x in tok.children]
+                    stk.extend(adj)
+                    indexes.extend(adj)
+            '''
+            stk = [ idx ]
+            while len(stk) != 0:
+                gtok = doc._tokens[ stk.pop() ]
+                stk.extend(gtok['adj'])
+                indexes.extend(gtok['adj'])
+            '''
+            if removePunct:
+                indexes = filter(lambda x: not doc[x].is_punct, indexes)
+            indexes.sort()
+        super(SubtreeSpan, self).__init__(doc, indexes)
+        self._rootIdx = idx
+
+    def __repr__(self):
+        if len(self._indexes) == 0:
+            return '(%i,\"\")' % self._rootIdx
+        txt = '(%i,\"%s' % (self._rootIdx, self._doc[self._indexes[0]].text)
+        for i in self._indexes[1:]:
+            tok = self._doc[i]
+            if tok.is_punct:
+                txt += tok.text
+            else:
+                txt += ' ' + tok.text
+        return txt + '\")'
+
+    def repair(self):
+        '''If the span no longer includes the root index due to complement or intersect
+        operations then this ensures the root idx is included. Also sorts indexes.
+        '''
+        if self._rootIdx not in self._indexes:
+            self._indexes.append(self._rootIdx)
+        self._indexes.sort()
+
+    @property
+    def root(self):
+        '''Return the root of the subtree span.
+
+        Returns: A Token instance.
+        '''
+        return self._doc[self._rootIdx]
+
+    @property
+    def idx(self):
+        '''Return the root index of the subtree span.
+
+        Returns: A index onto the Token array.
+        '''
+        return self._rootIdx
 
 
 class SyntheticSpan(object):
