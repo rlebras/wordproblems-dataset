@@ -8,6 +8,40 @@ from oauth2client.client import GoogleCredentials
 from clausefinder.common import IndexSpan as Span
 from clausefinder.common import SubtreeSpan
 
+GOOGLE_TYPE_NAMES = {
+    dep.ACOMP.id: 'C',        # Adjectival complement
+    dep.ADVMOD.id: 'Av',      # Adverbial modifier
+    dep.ATTR.id: 'c',         # Attribute dependent of a copular verb
+    dep.CCOMP.id: 'Cz',       # Clausal complement of a verb or adjective
+    dep.CSUBJ.id: 'S',        # Clausal subject
+    dep.CSUBJPASS.id: 'S',    # Clausal passive subject
+    dep.DOBJ.id: 'O',         # Direct object
+    dep.IOBJ.id: 'Oi',        # Indirect object
+    dep.NOMCSUBJ.id: 'S',     # Nominalized clausal subject
+    dep.NOMCSUBJPASS.id: 'S', # Nominalized clausal passive
+    dep.NSUBJ.id: 'S',        # Nominal subject
+    dep.NSUBJPASS.id: 'S',    # Passive nominal subject
+    dep.QUANTMOD.id: 'Aq',    # Quantifier phrase modifier
+    dep.XCOMP.id: 'Cx',       # Open clausal complement
+    pos.ADP.id: 'A',          # Adposition (preposition and postposition)
+    pos.VERB.id: 'V',         # Verb (all tenses and modes)
+}
+
+
+def getTypeName(tag):
+    '''Get a google type string from the grammatical relation id.
+
+    Args:
+        tag: The grammatical-relation or part-of-speech tag.
+
+    Returns:
+        A string.
+    '''
+    if GOOGLE_TYPE_NAMES.has_key(tag.id):
+        return GOOGLE_TYPE_NAMES[tag.id]
+    return ''
+
+
 class Token(object):
     '''A token in the dependency tree. The class has a similar interface to spacy.Token
     '''

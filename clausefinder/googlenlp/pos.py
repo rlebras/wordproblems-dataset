@@ -5,9 +5,9 @@ _GOOGLE_POS_NAMES = [
      # Google specific tags
     'UNKNOWN',  # Unknown
     'PRT',      # Particle or other function word
-    'NOUN',     # Noun (common and proper)
     'AFFIX',    # Affix
     # Universal tags
+    'NOUN',     # Noun (common and proper)
     'ADJ',      # Adjective
     'ADP',      # Adposition (preposition and postposition)
     'ADV',      # Adverb
