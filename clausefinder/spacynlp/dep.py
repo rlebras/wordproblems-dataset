@@ -14,4 +14,5 @@ for depname in _GOOGLE_DEP_NAMES:
         pass
 
 # I believe this is a bug but SpaCy root must use uppercase string.
+# See issue: https://github.com/explosion/spaCy/issues/607
 ROOT = NLP.vocab.strings['ROOT']
