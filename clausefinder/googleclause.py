@@ -10,6 +10,26 @@ from clausefinder.common import IndexSpan
 from clausefinder.common import SubtreeSpan
 
 
+#def isAncestor(token, descendent):
+#    return descendent.i in SubtreeSpan(self._doc, self._idx)._indexes
+
+def isDescendant(token, ancestor, module):
+    '''Check if token is a descendant of ancestor.
+
+    Args:
+        token: The token to test.
+        ancestor: The potential ancestor of token.
+
+    Returns:
+        True if token is a descendant of ancestor.
+    '''
+    while token.dep != module.dep.ROOT:
+        if token.i == ancestor.i:
+            return True
+        token = token.head
+    return token.i == ancestor.i
+
+
 class Clause(object):
     '''View of a clause in a sentence.'''
 
@@ -30,10 +50,10 @@ class Clause(object):
             self._objSpans = objectSpans
 
         # Now do final fixup
-        self._subjSpan._indexes = filter(lambda x: x <= subjectSpan.idx, subjectSpan._indexes)
+        self._subjSpan._indexes = filter(lambda x: x <= subjectSpan.i, subjectSpan._indexes)
         # Handle synthetic spans
         if isinstance(verbSpan, IndexSpan):
-            self._span._indexes = filter(lambda x: x <= verbSpan.idx, verbSpan._indexes)
+            self._span._indexes = filter(lambda x: x <= verbSpan.i, verbSpan._indexes)
         '''
         for s in self._objSpans:
             # Truncate after first occurrence of punctuation or conjunction
@@ -42,10 +62,10 @@ class Clause(object):
             last = -1
             for o in s:
                 i = i + 1
-                if o.idx < s.idx:
+                if o.i < s.i:
                     if o.is_punct or o.pos == googlenlp.pos.CONJ:
                         first = i + 1
-                elif o.idx > s.idx:
+                elif o.i > s.i:
                     if o.is_punct or o.pos == googlenlp.pos.CONJ:
                         last = i
                         break
@@ -115,7 +135,7 @@ class ParsedClause(Clause):
                     if len(x) > 0:
                         if isinstance(x[0], module.Token):
                             excludeSpan._indexes.extend(
-                                filter(lambda y: y not in excludeSpan._indexes, [y.idx for y in x]))
+                                filter(lambda y: y not in excludeSpan._indexes, [y.i for y in x]))
                         else:
                             raise TypeError
                 else:
@@ -125,7 +145,7 @@ class ParsedClause(Clause):
         subjSpan = SubtreeSpan(subject)
         subjSpan.complement(excludeSpan)
         if len(subjSpan) == 0:
-            subjSpan._indexes = [subject.idx]
+            subjSpan._indexes = [subject.i]
 
         # Calculate span of objects
         if objects is not None:
@@ -138,11 +158,11 @@ class ParsedClause(Clause):
                 # O(n^2) but len(objects) is typically < 3
                 for o, s in zip(objects, objSpans):
                     for p, t in zip(objects, objSpans):
-                        if p.idx == o.idx:
+                        if p.i == o.i:
                             continue
-                        if p.isDescendent(o):
+                        if isDescendant(p, o, module):
                             s._indexes = filter(lambda x: x not in t._indexes, s._indexes)
-                        elif o.isDescendent(p):
+                        elif isDescendant(o, p, module):
                             t._indexes = filter(lambda x: x not in s._indexes, t._indexes)
             else:
                 if not isinstance(objects, (googlenlp.Token, spacynlp.Token)):
@@ -168,12 +188,12 @@ class ParsedClause(Clause):
             s.repair()
 
         verbSpan = SubtreeSpan(verb, shallow=True)
-        if verb.idx > 0 and doc[verb.idx].dep == module.dep.AUXPASS:
-            verbSpan._indexes = [verb.idx-1, verb.idx]
+        if verb.i > 0 and doc[verb.i].dep == module.dep.AUXPASS:
+            verbSpan._indexes = [verb.i-1, verb.i]
         '''
         complement = filter(lambda x: x not in toRem, verbSpan._indexes)
         if len(complement) == 0:
-            complement = [verb.idx]
+            complement = [verb.i]
         verbSpan._indexes = complement
         '''
         subjSpan.repair()
@@ -224,7 +244,7 @@ class ClauseFinder(object):
             return
         elif not self._map.insertNew(V, [S, V]):
             X = self._map.lookup(V)
-            if X[1].idx != V.idx:
+            if X[1].i != V.i:
                 newX = [S]
                 newX.extend(X)
                 self._map.replace(V, newX)
@@ -395,7 +415,7 @@ class ClauseFinder(object):
 
             # 'XCOMP','CCOMP','ATTR'
             elif token.pos == self._nlp.pos.ADP:
-                if token.head.dep in [self._nlp.dep.ADVMOD, self._nlp.dep.QUANTMOD] and (token.head.idx + 1) == token.idx:
+                if token.head.dep in [self._nlp.dep.ADVMOD, self._nlp.dep.QUANTMOD] and (token.head.i + 1) == token.i:
                     self._processAsObj(token.head, self.getGovenorVerb(token))
                 else:
                     self._processAsObj(token, self.getGovenorVerb(token))
@@ -414,9 +434,9 @@ class ClauseFinder(object):
                     excludeList.append(token)
                     clauses.append(Clause(self._doc, \
                                           type='ISA', \
-                                          subjectSpan=self._nlp.SubtreeSpan(S, shallow=True), \
+                                          subjectSpan=SubtreeSpan(S, shallow=True), \
                                           verbSpan=SyntheticSpan('is'), \
-                                          objectSpans=self._nlp.SubtreeSpan(token)))
+                                          objectSpans=SubtreeSpan(token)))
                     S = None
             elif token.dep == self._nlp.dep.CONJ:
                 # Find the first conjunction and label all other the same
@@ -589,14 +609,13 @@ if __name__ == '__main__':
             with open(options.infile, 'rt') as fd:
                 lines = fd.readlines()
             cleanlines = filter(lambda x: len(x) != 0 and x[0] != '#', [x.strip() for x in lines])
-            doclist = spacynlp.parse(' '.join(cleanlines).decode('utf-8'))
-            for doc in doclist:
-                cf = ClauseFinder(doc)
-                for s in doc.sents:
-                    clauses = cf.findClauses(s)
-                    for clause in clauses:
-                        print('%i. %s: %s' % (i, clause.type, clause.text))
-                    i += 1
+            doc = spacynlp.parse(' '.join(cleanlines).decode('utf-8'))
+            cf = ClauseFinder(doc)
+            for s in doc.sents:
+                clauses = cf.findClauses(s)
+                for clause in clauses:
+                    print('%i. %s: %s' % (i, clause.type, clause.text))
+                i += 1
 
 
     sys.exit(0)

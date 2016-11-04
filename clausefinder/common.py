@@ -26,13 +26,13 @@ class ClauseFinderMap(object):
         Returns:
             True if the inserted, false if not.
         '''
-        if self._tokMap[key.idx] >= self._tokLimit or self._map[self._tokMap[key.idx]][0] != key.idx:
-            self._tokMap[key.idx] = self._tokLimit
+        if self._tokMap[key.i] >= self._tokLimit or self._map[self._tokMap[key.i]][0] != key.i:
+            self._tokMap[key.i] = self._tokLimit
             if self._tokLimit < len(self._map):
-                self._map[self._tokLimit] = (key.idx, value)
+                self._map[self._tokLimit] = (key.i, value)
             else:
                 assert self._tokLimit == len(self._map)
-                self._map.append((key.idx, value))
+                self._map.append((key.i, value))
             self._tokLimit += 1
             return True
         return False
@@ -60,7 +60,7 @@ class ClauseFinderMap(object):
             value: An instance of Token.
         '''
         if not self.insertNew(key, [value]):
-            self._map[self._tokMap[key.idx]][1].append(value)
+            self._map[self._tokMap[key.i]][1].append(value)
 
     def extend(self, key, value):
         '''Extend the value list associated with key.
@@ -71,7 +71,7 @@ class ClauseFinderMap(object):
             value: An instance of Token or a list of Token instances.
         '''
         if not self.insertNew(key, [value]):
-            self._map[self._tokMap[key.idx]][1].extend(value)
+            self._map[self._tokMap[key.i]][1].extend(value)
 
     def lookup(self, key):
         '''Get the value at key.
@@ -82,8 +82,8 @@ class ClauseFinderMap(object):
         Returns:
              The value at key.
         '''
-        if self._tokMap[key.idx] < self._tokLimit and self._map[self._tokMap[key.idx]][0] == key.idx:
-            return self._map[self._tokMap[key.idx]][1]
+        if self._tokMap[key.i] < self._tokLimit and self._map[self._tokMap[key.i]][0] == key.i:
+            return self._map[self._tokMap[key.i]][1]
 
     def replace(self, key, value):
         '''Replace the current value at key with a new value.
@@ -92,9 +92,9 @@ class ClauseFinderMap(object):
             key: An instance of Token.
             value: The new value.
         '''
-        if self._tokMap[key.idx] < self._tokLimit and self._map[self._tokMap[key.idx]][0] == key.idx:
+        if self._tokMap[key.i] < self._tokLimit and self._map[self._tokMap[key.i]][0] == key.i:
             # map items are a tuple so keep list reference
-            L = self._map[self._tokMap[key.idx]][1]
+            L = self._map[self._tokMap[key.i]][1]
             del L[0:len(L)]
             L.extend(value)
 
@@ -189,7 +189,7 @@ class SubtreeSpan(IndexSpan):
         if idx is not None and isinstance(idx, (int,long)):
             indexes = [idx]
         else:
-            idx = doc.idx
+            idx = doc.i
             doc = doc.doc
             indexes = [idx]
 
@@ -215,11 +215,11 @@ class SubtreeSpan(IndexSpan):
             else:
                 # Spacy document
                 if stk is None:
-                    stk = [x.idx for x in tok.children]
+                    stk = [x.i for x in tok.children]
                 indexes.extend(stk)
                 while len(stk) != 0:
                     tok = doc[stk.pop()]
-                    adj = [x.idx for x in tok.children]
+                    adj = [x.i for x in tok.children]
                     stk.extend(adj)
                     indexes.extend(adj)
             '''
@@ -264,7 +264,7 @@ class SubtreeSpan(IndexSpan):
         return self._doc[self._rootIdx]
 
     @property
-    def idx(self):
+    def i(self):
         '''Return the root index of the subtree span.
 
         Returns: A index onto the Token array.

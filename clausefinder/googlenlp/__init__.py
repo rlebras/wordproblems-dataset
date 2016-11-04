@@ -131,7 +131,7 @@ class Token(object):
         return False
 
     @property
-    def idx(self):
+    def i(self):
         return self._idx
 
     @property
@@ -159,16 +159,6 @@ class Token(object):
         for i in span._indexes:
             yield Token(self._doc, i)
 
-    def isDescendent(self, ancestor):
-        token = self
-        while token.dep != dep.ROOT:
-            if token.idx == ancestor.idx:
-                return True
-            token = token.head
-        return token.idx == ancestor.idx
-
-    def isAncestor(self, descendent):
-        return descendent.idx in SubtreeSpan(self._doc, self._idx)._indexes
 
 
 class Doc(object):

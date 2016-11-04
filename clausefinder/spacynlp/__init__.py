@@ -1,4 +1,4 @@
-from spacy.en import English  # NLP with spaCy https://spacy.io
+#from spacy.en import English  # NLP with spaCy https://spacy.io
 from spacy.tokens import Token
 from spacy.tokens import Doc
 from spacy.tokens import Span
@@ -6,7 +6,8 @@ from . import dep
 from . import pos
 from collections import OrderedDict
 
-NLP = English() # will take some time to load
+# done in .dep
+#NLP = English() # will take some time to load
 
 SPACY_TYPE_NAMES = {
     dep.ACOMP: 'C',        # Adjectival complement
@@ -37,10 +38,9 @@ def getTypeName(tag):
     Returns:
         A string.
     '''
-    if SPACY_TYPE_NAMES.has_key(tag.id):
-        return SPACY_TYPE_NAMES[tag.id]
+    if SPACY_TYPE_NAMES.has_key(tag):
+        return SPACY_TYPE_NAMES[tag]
     return ''
-
 
 
 # Helper methods
@@ -116,6 +116,7 @@ def parse(text):
     Args:
         text: The text to parse.
     '''
-    doc = NLP(text, tag=False, entity=False)
-    return [NLP(sent.text) for sent in doc.sents]
+    return dep.NLP(text, tag=True, entity=True)
+    #doc = NLP(text, tag=False, entity=False)
+    #return [NLP(sent.text) for sent in doc.sents]
 
