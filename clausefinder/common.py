@@ -1,3 +1,4 @@
+DELAY_SPACY_IMPORT = True
 
 class ClauseFinderMap(object):
     '''Helper for ClauseFinder. Should be faster than a dictionary, especially

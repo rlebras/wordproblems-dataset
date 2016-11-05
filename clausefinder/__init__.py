@@ -1,8 +1,10 @@
 # package clausefinder
 from clause import Clause
 from clause import ClauseFinder
+from common import DELAY_SPACY_IMPORT
 import googlenlp
-import spacynlp
+if not DELAY_SPACY_IMPORT:
+    import spacynlp
 
 
 if __name__ == '__main__':
@@ -80,6 +82,8 @@ if __name__ == '__main__':
                 for clause in clauses:
                     print('%s: %s' % (clause.type, clause.text))
     else:
+        if DELAY_SPACY_IMPORT:
+            import spacynlp
         i = 1
         if options.infile is not None:
             print('Processing text file %s' % options.infile)

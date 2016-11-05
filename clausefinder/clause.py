@@ -1,11 +1,15 @@
 import collections
 import states
 import googlenlp
-import spacynlp
+import sys
+# Delay import because it takes time
+from clausefinder.common import DELAY_SPACY_IMPORT
 from clausefinder.common import ClauseFinderMap
 from clausefinder.common import SyntheticSpan
 from clausefinder.common import IndexSpan
 from clausefinder.common import SubtreeSpan
+if not DELAY_SPACY_IMPORT:
+    import spacynlp
 
 
 #def isAncestor(token, descendent):
@@ -35,10 +39,14 @@ class Clause(object):
     def __init__(self, doc, type, subjectSpan, verbSpan, objectSpans):
         if isinstance(doc, googlenlp.Doc):
             self._nlp = googlenlp
-        elif isinstance(doc, spacynlp.Doc):
-            self._nlp = spacynlp
         else:
-            raise TypeError
+            global DELAY_SPACY_IMPORT
+            if DELAY_SPACY_IMPORT:
+                import spacynlp
+            if isinstance(doc, spacynlp.Doc):
+                self._nlp = spacynlp
+            else:
+                raise TypeError
         self._doc = doc
         self._type = type
         self._subjSpan = subjectSpan
@@ -116,10 +124,14 @@ class ParsedClause(Clause):
         module = None
         if isinstance(doc, googlenlp.Doc):
             module = googlenlp
-        elif isinstance(doc, spacynlp.Doc):
-            module = spacynlp
         else:
-            raise TypeError
+            global DELAY_SPACY_IMPORT
+            if DELAY_SPACY_IMPORT:
+                import spacynlp
+            if isinstance(doc, spacynlp.Doc):
+                module = spacynlp
+            else:
+                raise TypeError
 
         if not isinstance(subject, module.Token):
             raise TypeError
@@ -223,10 +235,14 @@ class ClauseFinder(object):
         '''
         if isinstance(doc, googlenlp.Doc):
             self._nlp = googlenlp
-        elif isinstance(doc, spacynlp.Doc):
-            self._nlp = spacynlp
         else:
-            raise TypeError
+            global DELAY_SPACY_IMPORT
+            if DELAY_SPACY_IMPORT:
+                import spacynlp
+            if isinstance(doc, spacynlp.Doc):
+                self._nlp = spacynlp
+            else:
+                raise TypeError
         self._doc = doc
         self._map = ClauseFinderMap(doc)
         self._conjAMap = ClauseFinderMap(doc)
@@ -373,8 +389,12 @@ class ClauseFinder(object):
         Returns:
             A list of Clause instances or a Clause instance.
         '''
-        if not isinstance(sentence, (SubtreeSpan, spacynlp.Span)):
-            raise TypeError
+        global DELAY_SPACY_IMPORT
+        if not isinstance(sentence, SubtreeSpan):
+            if DELAY_SPACY_IMPORT:
+                import spacynlp
+            if not isinstance(sentence, spacynlp.Span):
+                raise TypeError
         # Reset lookup tables
         self._map.clear()
         self._conjAMap.clear()
