@@ -41,7 +41,7 @@ if __name__ == '__main__':
                 i = 1
                 cf = ClauseFinder(doc)
                 for s in doc.sents:
-                    clauses = cf.findClauses(s)
+                    clauses = cf.find_clauses(s)
                     for clause in clauses:
                         print('%i. %s: %s' % (i, clause.type, clause.text))
                     i += 1
@@ -62,7 +62,7 @@ if __name__ == '__main__':
             doc = googlenlp.Doc(result)
             cf = ClauseFinder(doc)
             for s in doc.sents:
-                clauses = cf.findClauses(s)
+                clauses = cf.find_clauses(s)
                 for clause in clauses:
                     print('%i. %s: %s' % (i, clause.type, clause.text))
                 i += 1
@@ -76,7 +76,7 @@ if __name__ == '__main__':
             doc = googlenlp.Doc(result)
             cf = ClauseFinder(doc)
             for s in doc.sents:
-                clauses = cf.findClauses(s)
+                clauses = cf.find_clauses(s)
                 for clause in clauses:
                     print('%s: %s' % (clause.type, clause.text))
     else:
@@ -89,7 +89,7 @@ if __name__ == '__main__':
             doc = spacynlp.parse(' '.join(cleanlines).decode('utf-8'))
             cf = ClauseFinder(doc)
             for s in doc.sents:
-                clauses = cf.findClauses(s)
+                clauses = cf.find_clauses(s)
                 for clause in clauses:
                     print('%i. %s: %s' % (i, clause.type, clause.text))
                 i += 1

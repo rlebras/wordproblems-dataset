@@ -16,7 +16,7 @@ class ClauseFinderMap(object):
         self._tokLimit = 0
         self._map = []
 
-    def insertNew(self, key, value):
+    def insert_new(self, key, value):
         '''Insert value at key if the key is not mapped else do nothing.
 
         Args:
@@ -46,7 +46,6 @@ class ClauseFinderMap(object):
         '''
         # Once fully debugged we can set default deep=False.
         if deep:
-            # O(N) for reset, if deep is False then O(1)
             for i in range(self._tokLimit):
                 self._map[i] = None
         self._tokLimit = 0
@@ -59,7 +58,7 @@ class ClauseFinderMap(object):
                 the key does exist value is appended to the value list at key.
             value: An instance of Token.
         '''
-        if not self.insertNew(key, [value]):
+        if not self.insert_new(key, [value]):
             self._map[self._tokMap[key.i]][1].append(value)
 
     def extend(self, key, value):
@@ -70,7 +69,7 @@ class ClauseFinderMap(object):
                 the key does exist value is appended to the value list at key.
             value: An instance of Token or a list of Token instances.
         '''
-        if not self.insertNew(key, [value]):
+        if not self.insert_new(key, [value]):
             self._map[self._tokMap[key.i]][1].extend(value)
 
     def lookup(self, key):

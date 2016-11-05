@@ -11,12 +11,13 @@ from clausefinder.common import SubtreeSpan
 #def isAncestor(token, descendent):
 #    return descendent.i in SubtreeSpan(self._doc, self._idx)._indexes
 
-def isDescendant(token, ancestor, module):
+def is_descendant(token, ancestor, module):
     '''Check if token is a descendant of ancestor.
 
     Args:
         token: The token to test.
         ancestor: The potential ancestor of token.
+        module: googlenlp or spacynlp
 
     Returns:
         True if token is a descendant of ancestor.
@@ -97,13 +98,15 @@ class Clause(object):
         '''Return verb span. Use root.root to get the token.'''
         return self._span
 
-    def numObjects(self):
-        '''Return the number of object tokens.'''
-        return len(self._objsSpan)
+    @property
+    def objects(self):
+        '''Iterate objects.
 
-    def object(self, i):
-        '''Return object span at index i.  Use object(i).root to get the token.'''
-        return self._objSpans[i]
+        Yields:
+            A SubjectSpan instance.
+        '''
+        for o in self._objSpans:
+            yield o
 
 
 class ParsedClause(Clause):
@@ -158,9 +161,9 @@ class ParsedClause(Clause):
                     for p, t in zip(objects, objSpans):
                         if p.i == o.i:
                             continue
-                        if isDescendant(p, o, module):
+                        if is_descendant(p, o, module):
                             s._indexes = filter(lambda x: x not in t._indexes, s._indexes)
-                        elif isDescendant(o, p, module):
+                        elif is_descendant(o, p, module):
                             t._indexes = filter(lambda x: x not in s._indexes, t._indexes)
             else:
                 if not isinstance(objects, (googlenlp.Token, spacynlp.Token)):
@@ -230,61 +233,61 @@ class ClauseFinder(object):
         self._conjOMap = ClauseFinderMap(doc)
         self._conjVMap = ClauseFinderMap(doc)
 
-    def _processAsObj(self, O, V=None):
-        if V is None: V = self.getGovenorVerb(O)
+    def _process_as_obj(self, O, V=None):
+        if V is None: V = self.get_governor_verb(O)
         if V is None: return
-        if not self._map.insertNew(V, [V, O]):
+        if not self._map.insert_new(V, [V, O]):
             self._map.append(V, O)
 
-    def _processAsSubj(self, S, V=None):
-        if V is None: V = self.getGovenorVerb(S)
+    def _process_as_subj(self, S, V=None):
+        if V is None: V = self.get_governor_verb(S)
         if V is None:
             return
-        elif not self._map.insertNew(V, [S, V]):
+        elif not self._map.insert_new(V, [S, V]):
             X = self._map.lookup(V)
             if X[1].i != V.i:
                 newX = [S]
                 newX.extend(X)
                 self._map.replace(V, newX)
 
-    def _processConj(self, token):
-        A = self.getFirstOfConj(token)
-        V = self.getGovenorVerb(A)
+    def _process_conj(self, token):
+        A = self.get_first_of_conj(token)
+        V = self.get_governor_verb(A)
         if V is not None:
             if A.pos == self._nlp.pos.VERB:
                 assert token.pos == self._nlp.pos.VERB
                 assert A == V
                 assert V != token
-                self._conjVMap.insertNew(V, [A])
+                self._conjVMap.insert_new(V, [A])
                 self._conjVMap.append(V, token)
             elif A.dep in [self._nlp.dep.DOBJ, self._nlp.dep.IOBJ, self._nlp.dep.ACOMP]:
-                self._conjOMap.insertNew(V, [A])
+                self._conjOMap.insert_new(V, [A])
                 self._conjOMap.append(V, token)
             else:
-                O = self.getGovenorObj(A)
+                O = self.get_governor_obj(A)
                 if O is not None:
-                    self._conjAMap.insertNew(O, [A])
+                    self._conjAMap.insert_new(O, [A])
                     self._conjAMap.append(O, token)
 
-    def _checkIfConj(self, token):
+    def _check_conj(self, token):
         O = token.head
-        V = self.getGovenorVerb(O)
+        V = self.get_governor_verb(O)
         if V is not None:
             if O.pos == self._nlp.pos.VERB or \
                             O.dep in [self._nlp.dep.DOBJ, self._nlp.dep.IOBJ, self._nlp.dep.ACOMP] or \
-                            self.getGovenorObj(O) is not None:
+                            self.get_governor_obj(O) is not None:
                 return True
         return False
 
-    def getGovenorVerb(self, token):
-        '''Get the verb govenor of token. If the verb is part of a conjunction
+    def get_governor_verb(self, token):
+        '''Get the verb governor of token. If the verb is part of a conjunction
          then the head of conjunction is returned.
 
         Args:
             token: A Token instance.
 
         Returns:
-            The govenor verb if it exists or None.
+            The governor verb if it exists or None.
         '''
         while token.dep != self._nlp.dep.ROOT:
             if token.pos == self._nlp.pos.VERB:
@@ -297,15 +300,15 @@ class ClauseFinder(object):
             return token
         return None
 
-    def getGovenorPOS(self, token, pos):
-        '''Get the govenor part-of-speech of token.
+    def get_governor_pos(self, token, pos):
+        '''Get the governor part-of-speech of token.
 
         Args:
             token: A Token instance.
             pos: The part-of-speech
 
         Returns:
-            The govenor part-of-speech if it exists or None.
+            The governor part-of-speech if it exists or None.
         '''
         while token.dep != self._nlp.dep.ROOT:
             if token.pos in pos:
@@ -315,14 +318,14 @@ class ClauseFinder(object):
             return token
         return None
 
-    def getGovenorNsubj(self, token):
-        '''Get the govenor subject token.
+    def get_governor_subj(self, token):
+        '''Get the governor subject token.
 
         Args:
             token: A Token instance.
 
         Returns:
-            The govenor subject if it exists or None.
+            The governor subject if it exists or None.
         '''
         while token.dep != self._nlp.dep.ROOT:
             if token.dep == self._nlp.dep.NSUBJ:
@@ -330,14 +333,14 @@ class ClauseFinder(object):
             token = token.head
         return None
 
-    def getGovenorObj(self, token):
-        '''Get the govenor object token.
+    def get_governor_obj(self, token):
+        '''Get the governor object token.
 
         Args:
             token: A Token instance.
 
         Returns:
-            The govenor object if it exists or None.
+            The governor object if it exists or None.
         '''
         while token.dep != self._nlp.dep.ROOT:
             if token.dep in [self._nlp.dep.DOBJ, self._nlp.dep.IOBJ, self._nlp.dep.ACOMP]:
@@ -345,7 +348,7 @@ class ClauseFinder(object):
             token = token.head
         return None
 
-    def getFirstOfConj(self, token):
+    def get_first_of_conj(self, token):
         '''Get the first conjunction linking to token.
 
         Args:
@@ -361,7 +364,7 @@ class ClauseFinder(object):
             token = token.head
         return token
 
-    def findClauses(self, sentence):
+    def find_clauses(self, sentence):
         '''Find all clauses in a sentence.
 
         Args:
@@ -385,41 +388,41 @@ class ClauseFinder(object):
         # find all token indexes from this root
         for token in sentence:
             if state[0] == states.NSUBJ_FIND:
-                if self.getGovenorNsubj(token) != state[1]:
+                if self.get_governor_subj(token) != state[1]:
                     state = stk.pop(-1)
                 #else:
                 #    excludeList.append(token)
 
             # 'NSUBJPASS', 'CSUBJ', 'CSUBJPASS', 'NOMCSUBJ', 'NOMCSUBJPASS'
             if token.dep  == self._nlp.dep.NSUBJ:
-                self._processAsSubj(token)
+                self._process_as_subj(token)
 
             elif token.dep == self._nlp.dep.NSUBJPASS:
                 if token.text.lower() in ['which', 'that']:
-                    S = self.getGovenorNsubj(token)
+                    S = self.get_governor_subj(token)
                     if S is None:
-                        self._processAsSubj(token)
+                        self._process_as_subj(token)
                     else:
-                        V = self.getGovenorVerb(token)
+                        V = self.get_governor_verb(token)
                         if V is not None:
                             stk.append(state)
                             excludeList.append(token)
                             state = (states.NSUBJ_FIND, S)
-                            self._processAsSubj(S, V)
+                            self._process_as_subj(S, V)
                         else:
-                            self._processAsSubj(token)
+                            self._process_as_subj(token)
                 else:
-                    self._processAsSubj(token)
+                    self._process_as_subj(token)
 
             # 'XCOMP','CCOMP','ATTR'
             elif token.pos == self._nlp.pos.ADP:
                 if token.head.dep in [self._nlp.dep.ADVMOD, self._nlp.dep.QUANTMOD] and (token.head.i + 1) == token.i:
-                    self._processAsObj(token.head, self.getGovenorVerb(token))
+                    self._process_as_obj(token.head, self.get_governor_verb(token))
                 else:
-                    self._processAsObj(token, self.getGovenorVerb(token))
+                    self._process_as_obj(token, self.get_governor_verb(token))
 
             elif token.dep in [self._nlp.dep.DOBJ, self._nlp.dep.IOBJ, self._nlp.dep.ACOMP, self._nlp.dep.ATTR]:
-                self._processAsObj(token)
+                self._process_as_obj(token)
 
             elif token.dep == self._nlp.dep.APPOS:
                 # Check if we need to create a synthetic is-a relationship
@@ -438,16 +441,16 @@ class ClauseFinder(object):
                     S = None
             elif token.dep == self._nlp.dep.CONJ:
                 # Find the first conjunction and label all other the same
-                self._processConj(token)
+                self._process_conj(token)
 
             elif token.dep == self._nlp.dep.CC:
                 # Save for later. This will be excluded when we expand conjunctions
-                if self._checkIfConj(token):
+                if self._check_conj(token):
                     coordList.append(token)
 
             elif token.dep in [self._nlp.dep.XCOMP, self._nlp.dep.CCOMP]:
                 # Xcomp can have a VERB or ADJ as a parent
-                VA = self.getGovenorPOS(token.head, [self._nlp.pos.VERB, self._nlp.pos.ADJ])
+                VA = self.get_governor_pos(token.head, [self._nlp.pos.VERB, self._nlp.pos.ADJ])
                 if VA is not None:
                     if VA.dep == self._nlp.dep.ROOT:
                         # OK token will be used as is
@@ -455,17 +458,17 @@ class ClauseFinder(object):
                         VA = token
                     else:
                         # TODO: can we further decompose xcomp
-                        V = self.getGovenorVerb(VA.head)
+                        V = self.get_governor_verb(VA.head)
                         if V is None: continue
-                    if not self._map.insertNew(V, [V, VA]):
+                    if not self._map.insert_new(V, [V, VA]):
                         if VA not in self._map.lookup(V):
                             self._map.append(V, VA)
 
         for k, m in self._map:
-            if m is None or self._nlp.getTypeName(m[0].dep) != 'S': continue
+            if m is None or self._nlp.get_type_name(m[0].dep) != 'S': continue
             type = ''
             for tok in m:
-                type += self._nlp.getTypeName(tok.pos) + self._nlp.getTypeName(tok.dep)
+                type += self._nlp.get_type_name(tok.pos) + self._nlp.get_type_name(tok.dep)
 
             if len(m) >= 3:
                 # Check for conjunctions. Iterate and replace the object in SVO.

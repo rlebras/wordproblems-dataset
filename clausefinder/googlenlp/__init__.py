@@ -28,7 +28,7 @@ GOOGLE_TYPE_NAMES = {
 }
 
 
-def getTypeName(tag):
+def get_type_name(tag):
     '''Get a google type string from the grammatical relation id.
 
     Args:
